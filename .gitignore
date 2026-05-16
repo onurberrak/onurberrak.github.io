@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Build / deps (none today, future-proof)
+node_modules/
+dist/
+
+# Local secrets
+.env
+.env.local
