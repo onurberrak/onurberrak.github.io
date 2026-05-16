@@ -3211,21 +3211,21 @@
     list-style: none; padding: 0; margin: 0;
   }
   .chip {
-    --r: 0deg;
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 7px 12px 8px;
-    border: 1px solid var(--rule-strong);
+    padding: 8px 14px 9px;
+    border: 1px solid var(--ink);
     border-radius: 999px;
     background: var(--bone);
-    color: var(--ink-2);
-    font-size: 0.86rem;
+    color: var(--ink);
+    font-size: 0.88rem;
     font-weight: 500;
     line-height: 1;
     letter-spacing: -.005em;
     white-space: nowrap;
     cursor: default;
-    transform: rotate(var(--r));
-    transition: transform .3s cubic-bezier(.2,.7,.2,1), background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
   .chip-meta {
     font-family: var(--mono); font-size: 10px;
@@ -3235,10 +3235,10 @@
     transition: color .25s ease;
   }
   .chip:hover {
-    transform: translateY(-3px) rotate(0deg);
+    transform: translateY(-2px);
     background: var(--ink); color: var(--bone);
     border-color: var(--ink);
-    box-shadow: 5px 6px 0 var(--violet);
+    box-shadow: 4px 4px 0 var(--violet);
   }
   .chip:hover .chip-meta { color: var(--lime); }
 
@@ -3260,23 +3260,13 @@
   }
   .chip.cert:hover::before { background: var(--bone); }
 
-  /* Organic wobble — every 7th chip cycles through rotations */
-  .chip-list .chip:nth-child(7n+1) { --r: -0.7deg; }
-  .chip-list .chip:nth-child(7n+2) { --r: 0.6deg; }
-  .chip-list .chip:nth-child(7n+3) { --r: -0.3deg; }
-  .chip-list .chip:nth-child(7n+4) { --r: 0.9deg; }
-  .chip-list .chip:nth-child(7n+5) { --r: -0.5deg; }
-  .chip-list .chip:nth-child(7n+6) { --r: 0.4deg; }
-  .chip-list .chip:nth-child(7n+7) { --r: -0.8deg; }
-
-  /* Chips: always visible (no opacity gating).
-     Scroll-stagger removed so chips never end up hidden. */
-  .stack-row.reveal { opacity: 1; transform: none; transition: none; }
-  .stack-row.reveal .chip,
-  .stack-row.reveal.in .chip {
-    opacity: 1;
-    transform: rotate(var(--r));
-    transition: transform .3s cubic-bezier(.2,.7,.2,1), background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  /* Stack rows + chips: always visible, no reveal gating */
+  .stack-row,
+  .stack-row.reveal,
+  .stack-row.reveal.in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
   .stack-row.reveal.in .chip-list .chip:nth-child(1) { transition-delay: 0ms; }
   .stack-row.reveal.in .chip-list .chip:nth-child(2) { transition-delay: 50ms; }
