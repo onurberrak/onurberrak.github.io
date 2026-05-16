@@ -301,7 +301,153 @@
     line-height: 1.55;
   }
 
-  /* ---------- Performance chart ---------- */
+  /* ---------- Performance donut chart ---------- */
+  .perf-donut-wrap {
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+    padding: clamp(20px, 3vw, 32px);
+    background: var(--bone);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 6px 6px 0 0 var(--ink);
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: clamp(20px, 4vw, 48px);
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .perf-donut-wrap { grid-template-columns: 1fr; justify-items: center; }
+  }
+  .perf-donut {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+  .perf-donut .slice {
+    stroke: var(--ink);
+    stroke-width: 1.8;
+    stroke-linejoin: round;
+    transform-origin: 0 0;
+    transition: transform .25s ease, filter .2s ease;
+  }
+  .perf-donut .slice:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(2px 2px 0 var(--ink));
+  }
+  .perf-donut .slice-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    fill: var(--ink);
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 500;
+  }
+  .perf-donut .slice-label-light { fill: var(--bone); }
+  .perf-donut .slice-pct {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .04em;
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  .perf-donut .slice-pct-light { fill: var(--bone); }
+  .perf-donut .slice-pct-dark { fill: var(--ink); }
+  .perf-donut .donut-hole {
+    fill: var(--bone);
+    stroke: var(--ink);
+    stroke-width: 1.5;
+  }
+  .perf-donut .donut-total {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-style: italic;
+    fill: var(--ink);
+    text-anchor: middle;
+  }
+  .perf-donut .donut-sub-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    fill: var(--ink-3);
+    text-anchor: middle;
+    text-transform: uppercase;
+  }
+  .perf-donut .donut-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    fill: var(--ink-2);
+    text-anchor: middle;
+  }
+  .perf-donut-info { min-width: 0; }
+  .perf-donut-title {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+  }
+  .perf-donut-legend {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .perf-donut-legend li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--rule-strong);
+    border-radius: 4px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .perf-donut-legend li:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .perf-donut-legend .swatch {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    border: 1.2px solid var(--ink);
+    border-radius: 2px;
+    margin-top: 3px;
+  }
+  .perf-donut-legend strong {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .perf-donut-legend span.lg-sub {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .02em;
+    color: var(--ink-2);
+    line-height: 1.4;
+    display: block;
+  }
+  .perf-donut-foot {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: var(--ink-3);
+    letter-spacing: .02em;
+  }
+  .perf-donut-foot strong { color: var(--ink); }
+
+  /* ---------- Performance bar chart (legacy, kept for reference) ---------- */
   .perf-chart {
     margin: 0 0 clamp(2.5rem, 5vw, 4rem);
     padding: 28px 28px 22px;
@@ -3609,7 +3755,7 @@
       </div>
       <div class="perf-stat">
         <div class="perf-num"><em>Top 2–3</em></div>
-        <div class="perf-lbl">three years running · webshop excluded</div>
+        <div class="perf-lbl">three years running · sales floor</div>
       </div>
       <div class="perf-stat">
         <div class="perf-num"><em>4×</em></div>
@@ -3617,32 +3763,61 @@
       </div>
     </div>
 
-    <div class="perf-chart reveal">
-      <div class="perf-chart-head">
-        <p class="perf-chart-title">// personal sales · yearly (€) — aveato</p>
-        <div class="perf-chart-legend">
-          <span class="lg-violet"><i></i>year</span>
-          <span class="lg-lime"><i></i>peak / verified</span>
-        </div>
+    <div class="perf-donut-wrap reveal">
+      <svg class="perf-donut" viewBox="-130 -130 260 260" aria-label="Personal sales distribution 2023-2025">
+        <g class="perf-donut-slices">
+          <!-- 2023 — €1,147,625 — 32.0% (violet) -->
+          <path class="slice" d="M 0 0 L 0 -100 A 100 100 0 0 1 90.47 42.58 Z" fill="#4F32D8" />
+          <!-- 2024 — €1,323,624 — 36.9% (lime, peak) -->
+          <path class="slice" d="M 0 0 L 90.47 42.58 A 100 100 0 0 1 -92.72 37.45 Z" fill="#D4FF3D" />
+          <!-- 2025 — €1,111,610 — 31.0% (gold) -->
+          <path class="slice" d="M 0 0 L -92.72 37.45 A 100 100 0 0 1 0 -100 Z" fill="#f5c674" />
+        </g>
+
+        <!-- Slice labels (year) -->
+        <text class="slice-label slice-label-light" x="65" y="-32">'23</text>
+        <text class="slice-label" x="-2" y="78">'24</text>
+        <text class="slice-label" x="-65" y="-38">'25</text>
+
+        <!-- Slice percent (subtle) -->
+        <text class="slice-pct slice-pct-light" x="65" y="-10">32%</text>
+        <text class="slice-pct slice-pct-dark"  x="-2" y="96">37%</text>
+        <text class="slice-pct slice-pct-dark"  x="-65" y="-18">31%</text>
+
+        <!-- Donut hole + center label -->
+        <circle class="donut-hole" cx="0" cy="0" r="52" />
+        <text class="donut-sub-label" x="0" y="-18">total · 3 yrs</text>
+        <text class="donut-total" x="0" y="6">€3.58M</text>
+        <text class="donut-sub" x="0" y="22">2023 — 2025</text>
+      </svg>
+
+      <div class="perf-donut-info">
+        <p class="perf-donut-title">// personal sales · 2023–2025 — aveato</p>
+        <ul class="perf-donut-legend">
+          <li>
+            <span class="swatch" style="background:#4F32D8"></span>
+            <div>
+              <strong>2023 — €1,147,625</strong>
+              <span class="lg-sub">32% · rank #2 · full-year CSM · ramp 172k → 378k Q-on-Q</span>
+            </div>
+          </li>
+          <li>
+            <span class="swatch" style="background:#D4FF3D"></span>
+            <div>
+              <strong>2024 — €1,323,624</strong>
+              <span class="lg-sub">37% · rank #2 · career-peak year · promoted to KAM in May</span>
+            </div>
+          </li>
+          <li>
+            <span class="swatch" style="background:#f5c674"></span>
+            <div>
+              <strong>2025 — €1,111,610</strong>
+              <span class="lg-sub">31% · rank #3 of 13 reps · KAM → Team Lead Catering &amp; Events</span>
+            </div>
+          </li>
+        </ul>
+        <p class="perf-donut-foot">Figures pulled from internal quarterly &amp; year-end cockpit reports. Cumulative across the three years: <strong>€3,582,859</strong>.</p>
       </div>
-      <div class="perf-chart-bars" id="perfChart">
-        <div class="perf-bar peak" style="--pct: 87%">
-          <div class="perf-bar-fill"><span class="perf-bar-value">€1.15M</span></div>
-          <span class="perf-bar-label">'23</span>
-          <span class="perf-bar-sub">CSM full year<br>rank #2</span>
-        </div>
-        <div class="perf-bar peak" style="--pct: 100%">
-          <div class="perf-bar-fill"><span class="perf-bar-value">€1.32M</span></div>
-          <span class="perf-bar-label">'24</span>
-          <span class="perf-bar-sub">CSM → KAM (May)<br>rank #2 · career peak</span>
-        </div>
-        <div class="perf-bar peak" style="--pct: 84%">
-          <div class="perf-bar-fill"><span class="perf-bar-value">€1.11M</span></div>
-          <span class="perf-bar-label">'25</span>
-          <span class="perf-bar-sub">KAM → TL<br>rank #3 / 13 reps</span>
-        </div>
-      </div>
-      <p class="perf-chart-footnote">Three consecutive years above €1M in personal sales — figures pulled from internal quarterly &amp; year-end cockpit reports (webshop channel excluded from rankings). 2023: €1,147,625 across 4 quarters. 2024: €1,323,624 — career-peak year. 2025: €1,111,610 — ranked 3rd of 13 sales reps. Cumulative: <strong>€3,582,859 across 2023–2025</strong>.</p>
     </div>
 
     <p class="perf-year-note">a year-by-year ledger <span class="dot">✦</span> aggregate &amp; aveato-side only</p>
@@ -3666,7 +3841,7 @@
         <span class="perf-year-tag">'24</span>
         <div class="perf-year-body">
           <strong>€<em>1,323,624</em> closed · rank <em>#2</em> · career-peak year</strong>
-          <p>Promoted to <strong>Key Account Manager</strong> in May 2024. The half-year key account review cadence locked in across the book — predictability inside enterprise relationships, instead of fire-drill quarter-ends.</p>
+          <p>Promoted to <strong>Key Account Manager</strong> in May 2024. On top of the constant day-to-day contact, every account now gets a structured <strong>half-yearly 1:1 strategic review</strong> — KPIs, contract health, planned changes, renewal calendar. Predictability inside enterprise relationships instead of fire-drill quarter-ends.</p>
           <p>Single biggest sales year of my career to date. Q2 alone was €389,863.</p>
         </div>
       </li>
@@ -3696,8 +3871,8 @@
       </article>
       <article class="perf-project">
         <span class="pp-tag">◐ Cadence · 2024 onward</span>
-        <h3>6-month key account reviews</h3>
-        <p>Established a half-year review cadence across the corporate book — structured conversations on usage, contract health, planned changes and renewals. Predictability inside enterprise relationships, instead of fire-drill quarter-ends.</p>
+        <h3>Half-yearly 1:1 strategic reviews</h3>
+        <p>Day-to-day contact never stops — but on top of that, every key account gets a structured <strong>1:1 review every six months</strong>: KPIs, contract health, planned changes, renewals. Sit-down conversations the client and I both put on the calendar.</p>
       </article>
       <article class="perf-project">
         <span class="pp-tag">✸ Leadership · 2026</span>
@@ -3952,27 +4127,16 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 
-  // Reveal: scroll-triggered with a safety net so content is never hidden
+  // Reveal: mark all .reveal targets visible up-front, then IO adds .in again on scroll
+  // (idempotent — guarantees nothing stays hidden even if IO is blocked / DOM altered late)
   (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
-    // Safety net: after 1.4s, anything still unrevealed is shown unconditionally
-    setTimeout(function () {
-      els.forEach(function (e) { e.classList.add('in'); });
-    }, 1400);
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function (e) { e.classList.add('in'); });
-      return;
+    function revealAll() {
+      document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.classList.add('in');
-          io.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.04, rootMargin: '0px 0px 200px 0px' });
-    els.forEach(function (e) { io.observe(e); });
+    revealAll();
+    // Run again after layout settles, in case new DOM was injected
+    setTimeout(revealAll, 200);
+    setTimeout(revealAll, 1000);
   })();
 
   // Media tabs — switch category panels
@@ -4107,7 +4271,7 @@
         numbers: [
           { from: 'user', text: "what's behind the €3.58M?" },
           { from: 'ece', text: "<strong>€3,582,859 closed across 2023–2025</strong> — pulled straight from internal quarterly &amp; year-end cockpit reports, not napkin math." },
-          { from: 'ece', text: "year-by-year: <strong>€1.15M in '23</strong> (rank #2), <strong>€1.32M in '24</strong> (rank #2 · career-peak year), <strong>€1.11M in '25</strong> (rank #3 of 13 reps, webshop excluded)." },
+          { from: 'ece', text: "year-by-year: <strong>€1.15M in '23</strong> (rank #2), <strong>€1.32M in '24</strong> (rank #2 · career-peak year), <strong>€1.11M in '25</strong> (rank #3 of 13)." },
           { from: 'ece', text: "the way that happens isn't tricks. it's being early on the renewal calendar, late off the phone when something breaks, and obsessive about what operations can actually deliver before you promise it." },
           { from: 'ece', text: "the largest enterprise clients in germany sit in my portfolio. when they have a question, the answer comes from me before it comes from a procurement form." }
         ],
