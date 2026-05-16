@@ -1485,13 +1485,182 @@
 
   @media (max-width: 600px) {
     .chat-tag { display: none; }
-    .chat-body { padding: 16px; }
-    .chat-suggestions { padding: 12px 14px 16px; }
-    .msg { max-width: 92%; }
+    .chat-body {
+      padding: 14px;
+      max-height: min(520px, 70vh);
+      min-height: 260px;
+    }
+    .chat-suggestions { padding: 12px 12px 16px; gap: 6px; }
+    .msg { max-width: 94%; }
+    .msg-bubble { font-size: 14px; padding: 10px 14px; }
+    .chip-q { font-size: 11.5px; padding: 7px 12px 8px; }
+    .chat-header { padding: 13px 16px; gap: 11px; }
+    .chat-avatar { width: 38px; height: 38px; }
+    .chat-name { font-size: 14px; }
+    .chat-status { font-size: 10.5px; }
+    /* Inline form: stacked, full-width, touch-friendly */
+    .msg-form { max-width: 100% !important; }
+    .inline-form { padding: 14px; }
+    .inline-form input,
+    .inline-form textarea {
+      font-size: 16px; /* prevents iOS auto-zoom */
+      padding: 10px 12px;
+    }
+    .inline-form button { min-height: 38px; padding: 9px 16px 10px; }
+    /* More popup: full-width on mobile */
+    .more-popup {
+      left: 12px !important;
+      right: 12px !important;
+      width: auto !important;
+      bottom: calc(100% + 10px);
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .chat-sparkle, .bounce-arrow, .dot-pulse, .msg-bubble-typing span { animation: none; }
   }
+
+  /* ======================================================
+     Global mobile sweep — overrides for narrow viewports.
+     Kept at end of CSS so it wins specificity without !important.
+     ====================================================== */
+  @media (max-width: 720px) {
+    /* Nav: tighter, wrap-friendly, no horizontal scroll */
+    .nav-inner {
+      flex-wrap: wrap;
+      padding: 12px var(--pad);
+      gap: 10px;
+    }
+    .nav-links {
+      gap: 14px;
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+    .nav-links a { font-size: 12.5px; padding: 4px 1px; }
+    .wordmark { font-size: 18px; }
+
+    /* Status bar: smaller, allow wrap */
+    .status-bar {
+      padding: 8px 14px;
+      font-size: 10px;
+      letter-spacing: .06em;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* Section spacing: tighter on mobile */
+    .section { padding-top: clamp(3rem, 9vw, 4.5rem); padding-bottom: clamp(3rem, 9vw, 4.5rem); }
+    .section-head { margin-bottom: 1.8rem; gap: 1rem; }
+
+    /* Hero: tighter, portrait above text */
+    .hero {
+      padding-top: clamp(2.5rem, 8vw, 4rem);
+      padding-bottom: clamp(2rem, 6vw, 3rem);
+      min-height: auto;
+    }
+    .hero-grid { gap: 1.4rem; }
+    .hero-portrait {
+      width: min(58vw, 220px);
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: clamp(2.6rem, 13vw, 4.2rem) !important; line-height: 1; }
+    .hero-tagline { font-size: 14px; flex-wrap: wrap; }
+    .hero-tagline .sep { margin: 0 6px; }
+    .hero-sub { font-size: 1rem; line-height: 1.5; }
+    .hero-ctas { gap: 10px; }
+    .hero-ctas .btn { padding: 12px 18px; font-size: 13px; flex: 1; min-width: 0; justify-content: center; }
+    .hero-credentials { gap: 6px 16px; font-size: 10.5px; padding-top: 1rem; }
+    .hero-credentials span:not(:first-child)::before { margin-right: 10px; }
+    .hero-cv { margin-left: 0; padding: 5px 10px 6px; font-size: 10px; }
+
+    /* Generic h2 in section heads */
+    .section-head h2 { font-size: clamp(2rem, 8vw, 2.8rem) !important; line-height: 1.05; max-width: none; }
+    .section-head .right p { font-size: 12.5px; }
+
+    /* Experience rows: stacked */
+    .exp-row { grid-template-columns: 1fr; gap: 1rem; padding: 1.4rem 0; }
+    .exp-time { gap: 8px; }
+    .exp-company { font-size: 1.5rem; }
+    .exp-hook em { font-size: 0.98rem; }
+    .exp-bullets li { font-size: 0.92rem; }
+    .exp-stats { gap: 6px; }
+    .exp-stats span { font-size: 11px; padding: 4px 9px; }
+
+    /* Performance — keep readable on phones */
+    .perf-headline { gap: 10px; grid-template-columns: 1fr 1fr; }
+    .perf-stat { padding: 16px 14px 14px; }
+    .perf-num { font-size: 1.6rem; margin-bottom: 6px; }
+    .perf-lbl { font-size: 10.5px; }
+    .perf-donut-wrap { padding: 18px 16px; gap: 18px; }
+    .perf-donut { max-width: 260px; }
+    .perf-donut-title { font-size: 10.5px; margin-bottom: 12px; }
+    .perf-donut-legend li { padding: 10px 12px; gap: 10px; }
+    .perf-donut-legend strong { font-size: 15px; }
+    .perf-donut-legend span.lg-sub { font-size: 11px; }
+    .perf-donut-foot { font-size: 10px; }
+    .perf-year-tag { font-size: 1.2rem; }
+    .perf-year-body strong { font-size: 0.98rem; }
+    .perf-year-body p { font-size: 0.92rem; }
+    .perf-project { padding: 18px 16px 16px; }
+    .perf-project h3 { font-size: 1.2rem; }
+    .perf-project p { font-size: 13.5px; }
+
+    /* Education cards: stacked, polaroids smaller */
+    .edu-card { padding: 1.8rem 1.4rem 1.4rem; }
+    .edu-card h3 { font-size: clamp(1.3rem, 5.5vw, 1.6rem); }
+    .edu-polaroid { width: 90px; top: -12px; right: -8px; padding: 6px 6px 8px; }
+    .edu-polaroid-caption { font-size: 10px; }
+    .edu-degree { font-size: 0.92rem; }
+    .edu-line { font-size: 0.95rem; }
+    .edu-thesis p { font-size: 0.88rem; }
+    .edu-certs-grid { gap: 6px; }
+    .cert-chip { font-size: 11.5px; padding: 6px 10px; }
+
+    /* Stack rows: label stacked above chips, full chip wrap */
+    .stack-row { gap: 0.6rem; padding: 1.1rem 0; }
+    .stack-row-label { font-size: 10.5px; padding-top: 4px; }
+    .chip-list { gap: 6px; }
+    .chip { font-size: 12.5px; padding: 7px 11px 8px; }
+
+    /* Next chapter: dial down shadow + padding */
+    .next-section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+    .next-card {
+      padding: 2rem 1.4rem;
+      box-shadow: 5px 5px 0 0 var(--violet);
+      border-radius: 4px;
+    }
+    .next-head { font-size: clamp(1.7rem, 8vw, 2.4rem); margin-bottom: 22px; }
+    .next-body { font-size: 0.98rem; line-height: 1.55; }
+    .next-signoff { font-size: 1.25rem; }
+    .next-cta-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .next-cta-row .btn { width: 100%; justify-content: center; }
+    .next-meta { margin-left: 0; font-size: 9.5px; }
+    .next-card::after { display: none; }
+
+    /* Contact: stack form + channels */
+    .contact-grid { grid-template-columns: 1fr !important; gap: 24px; }
+    .contact-headline-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .contact-stick { transform: rotate(-2deg); }
+    .field input, .field textarea { font-size: 16px; /* iOS no-zoom */ }
+    .btn[type="submit"] { width: 100%; justify-content: center; }
+    .channel { padding: 12px 14px; }
+    .channel .label { font-size: 10.5px; }
+    .channel .val { font-size: 13.5px; word-break: break-word; }
+
+    /* Footer */
+    .foot-inner { flex-direction: column; gap: 8px; text-align: center; padding: 24px 16px; }
+  }
+
+  @media (max-width: 420px) {
+    .hero h1 { font-size: 2.3rem !important; }
+    .perf-headline { grid-template-columns: 1fr; }
+    .perf-num { font-size: 1.8rem; }
+    .nav-links a { font-size: 12px; }
+    .hero-credentials span:not(:first-child)::before { display: none; }
+    .hero-credentials { flex-direction: column; gap: 4px; align-items: flex-start; }
+  }
+
+  /* Prevent horizontal scroll site-wide (catches stray overflows) */
+  html, body { overflow-x: hidden; max-width: 100%; }
 
   /* (Legacy about — unused after chat refactor) */
   .about-body {
