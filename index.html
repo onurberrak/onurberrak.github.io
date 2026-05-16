@@ -1867,7 +1867,6 @@
   }
   @media (min-width: 800px) {
     .edu-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .edu-card-3 { grid-column: 1 / -1; }
   }
 
   /* Wide horizontal card for the third (no-photo) entry */
@@ -1984,6 +1983,30 @@
     object-fit: contain;
     background: #fff;
     padding: 12px;
+  }
+  /* Cağaloğlu placeholder — no logo, but a DSD II badge polaroid */
+  .edu-polaroid-cal {
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background:
+      repeating-linear-gradient(45deg, rgba(14,13,20,0.04) 0 2px, transparent 2px 10px),
+      linear-gradient(155deg, var(--violet) 0%, #6b46e8 100%);
+    border-radius: 2px;
+  }
+  .edu-polaroid-cal .cal-mono {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: .12em;
+    color: var(--bone);
+    background: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 8px 14px;
+    box-shadow: 3px 3px 0 0 var(--lime);
+    transform: rotate(-3deg);
+    white-space: nowrap;
   }
   /* Fallback when image fails to load — gradient placeholder */
   .edu-polaroid.no-img {
@@ -3887,21 +3910,21 @@
     <div class="edu-grid">
 
       <article class="edu-card edu-card-1 reveal">
-        <div class="edu-polaroid edu-polaroid-1 edu-polaroid-logo">
-          <img src="assets/edu-istu.png" alt="Istanbul University logo" loading="lazy" />
-          <span class="edu-polaroid-caption">Istanbul · '18</span>
+        <div class="edu-polaroid edu-polaroid-1 edu-polaroid-cal">
+          <span class="cal-mono">DSD II ✦ KMK</span>
+          <span class="edu-polaroid-caption">Istanbul · '07</span>
         </div>
         <div class="edu-badges">
-          <span class="stick edu-stick-violet">★ B.A.</span>
-          <span class="stick edu-stick-bone">'15 → '18</span>
+          <span class="stick edu-stick-violet">★ Abitur</span>
+          <span class="stick edu-stick-bone">'03 → '07</span>
           <span class="stick edu-stick-bone">Istanbul · TR</span>
         </div>
-        <h3>Istanbul <span class="italic">University.</span></h3>
-        <p class="edu-degree">Bachelor, Economics <span class="edu-sparkle">✦</span></p>
-        <p class="edu-line">Macro, micro, econometrics — the commercial language that makes everything from key account margin to GTM economics legible.</p>
+        <h3>Cağaloğlu Anadolu <span class="italic">Lisesi.</span></h3>
+        <p class="edu-degree">High School (German-instruction track) <span class="edu-sparkle">✦</span></p>
+        <p class="edu-line">Six years inside Istanbul's German-language secondary school — Math, Physics, Chemistry, History all taught in German. The grounding that made everything from Karlsruhe to Berlin possible.</p>
         <div class="edu-thesis">
-          <span class="edu-thesis-label">◆ Graduation · 2018</span>
-          <p><em>B.A. Economics, Grade 2.54 —</em> the degree I finished after the career pivot, fully in Turkish.</p>
+          <span class="edu-thesis-label">◆ DSD II · KMK · 2007</span>
+          <p><em>German Language Diploma, Stage II</em> — the C1-level qualification I still rely on at every C-level meeting in Berlin.</p>
         </div>
       </article>
 
@@ -3911,33 +3934,43 @@
           <span class="edu-polaroid-caption">Karlsruhe · '12</span>
         </div>
         <div class="edu-badges">
-          <span class="stick edu-stick-lime">✸ Pivot</span>
+          <span class="stick edu-stick-lime">✸ Engineering</span>
           <span class="stick edu-stick-bone">'07 → '12</span>
           <span class="stick edu-stick-bone">Karlsruhe · DE</span>
         </div>
         <h3>Karlsruhe Institute <span class="italic">of Technology.</span></h3>
-        <p class="edu-degree">Electrical &amp; Electronics Engineering <span class="edu-minor">not completed</span> <span class="edu-sparkle">✦</span></p>
-        <p class="edu-line">Where the engineering mindset got installed — and where I figured out my path was on the commercial side. The math, the systems thinking and the tolerance for complexity stayed.</p>
+        <p class="edu-degree">Electrical &amp; Electronics Engineering <span class="edu-minor">not completed · career change</span> <span class="edu-sparkle">✦</span></p>
+        <p class="edu-line">Where the engineering mindset got installed — and where I realised my path was on the commercial side. The math, the systems thinking and the tolerance for complexity all stayed.</p>
       </article>
 
-      <article class="edu-card edu-card-3 reveal">
-        <div class="edu-side">
-          <div class="edu-badges">
-            <span class="stick edu-stick-violet">◐ Studies</span>
-            <span class="stick edu-stick-bone">'12 → '15</span>
-            <span class="stick edu-stick-bone">Stuttgart · DE</span>
-          </div>
-          <h3>Stuttgart Media <span class="italic">University.</span></h3>
-          <p class="edu-degree" style="margin:0;">Communication &amp; Media Studies <span class="edu-minor">parallel · incomplete</span> <span class="edu-sparkle">✦</span></p>
-        </div>
-        <div class="edu-main">
-          <p class="edu-line">Bridging year between engineering and economics — communications, media, brand, the language side of the business I'd grow into.</p>
-          <p class="edu-line">German Language Diploma DSD II (KMK) carried through this period — the C1 reading and writing I still use at C-level meetings every week.</p>
-        </div>
-        <div class="edu-polaroid edu-polaroid-3 edu-polaroid-logo">
+      <article class="edu-card edu-card-1 reveal">
+        <div class="edu-polaroid edu-polaroid-2 edu-polaroid-logo">
           <img src="assets/edu-stuttgart.png" alt="Stuttgart Media University logo" loading="lazy" />
           <span class="edu-polaroid-caption">Stuttgart · '15</span>
         </div>
+        <div class="edu-badges">
+          <span class="stick edu-stick-violet">◐ Studies</span>
+          <span class="stick edu-stick-bone">'12 → '15</span>
+          <span class="stick edu-stick-bone">Stuttgart · DE</span>
+        </div>
+        <h3>Stuttgart Media <span class="italic">University.</span></h3>
+        <p class="edu-degree">Communication &amp; Media Studies <span class="edu-minor">not completed</span> <span class="edu-sparkle">✦</span></p>
+        <p class="edu-line">Bridging chapter between engineering and economics — communications, media, brand. The language side of the business I'd eventually grow into, with a year as a store manager in Böblingen in parallel.</p>
+      </article>
+
+      <article class="edu-card edu-card-2 reveal">
+        <div class="edu-polaroid edu-polaroid-1 edu-polaroid-logo">
+          <img src="assets/edu-istu.png" alt="Istanbul University logo" loading="lazy" />
+          <span class="edu-polaroid-caption">Istanbul · '18</span>
+        </div>
+        <div class="edu-badges">
+          <span class="stick edu-stick-lime">★ B.A.</span>
+          <span class="stick edu-stick-bone">'15 → '18</span>
+          <span class="stick edu-stick-bone">Istanbul · TR</span>
+        </div>
+        <h3>Istanbul <span class="italic">University.</span></h3>
+        <p class="edu-degree">Bachelor, Economics · Grade 2.54 <span class="edu-sparkle">✦</span></p>
+        <p class="edu-line">Macro, micro, econometrics — the commercial language that makes everything from key account margin to GTM economics legible. The degree I finished after the career pivot.</p>
       </article>
 
     </div>
@@ -4313,7 +4346,7 @@
         langs: [
           { from: 'user', text: "three languages, really?" },
           { from: 'ece', text: "<strong>türkçe</strong> — native. <strong>deutsch</strong> — C1, fluent. <strong>english</strong> — B1, intermediate (and improving with every C-level meeting)." },
-          { from: 'ece', text: "the german is real, not duolingo. <strong>DSD II (KMK)</strong> from my school years in baden-württemberg, plus the years on the ground at KIT, stuttgart and böblingen." },
+          { from: 'ece', text: "the german is real, not duolingo. <strong>DSD II (KMK)</strong> earned at <strong>cağaloğlu anadolu lisesi</strong> — istanbul's german-instruction high school — then reinforced by years on the ground at KIT, stuttgart media uni and böblingen." },
           { from: 'ece', text: "running enterprise accounts in germany means doing renewals in german, smalltalk in german, and the awkward escalation calls in german. that's the language i work in." }
         ],
         start: [
