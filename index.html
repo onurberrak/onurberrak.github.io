@@ -301,6 +301,134 @@
     line-height: 1.55;
   }
 
+  /* ---------- Nav skill link ---------- */
+  .nav-skill {
+    color: var(--violet-ink) !important;
+    font-weight: 600 !important;
+  }
+  .nav-skill::after {
+    background: var(--violet) !important;
+  }
+
+  /* ---------- Sales OS promo section ---------- */
+  .sales-os-promo {
+    position: relative;
+  }
+  .sales-os-card {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.6rem, 3.5vw, 2.8rem);
+    background: var(--ink);
+    color: var(--bone);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 10px 10px 0 0 var(--lime);
+    position: relative;
+    overflow: hidden;
+  }
+  .sales-os-card::before {
+    content: "✦";
+    position: absolute;
+    top: -8px; right: -8px;
+    font-size: 180px;
+    color: rgba(212, 255, 61, 0.06);
+    line-height: 1;
+    font-family: var(--serif);
+    pointer-events: none;
+    transform: rotate(12deg);
+  }
+  .sales-os-card .so-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin: 0 0 14px;
+    display: inline-block;
+    position: relative;
+  }
+  .sales-os-card h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -.015em;
+    color: var(--bone);
+    margin: 0 0 22px;
+    position: relative;
+  }
+  .sales-os-card h2 .italic { font-style: italic; color: var(--lime); }
+  .sales-os-card .so-body {
+    color: rgba(250, 248, 241, 0.78);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.55;
+    max-width: 58ch;
+    margin: 0 0 16px;
+    position: relative;
+  }
+  .sales-os-card .so-body strong { color: var(--bone); }
+  .sales-os-meta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(212, 255, 61, 0.7);
+    margin: 0 0 24px;
+    position: relative;
+  }
+  .sales-os-meta span:not(:first-child)::before {
+    content: "·";
+    color: var(--lime);
+    margin: 0 8px;
+  }
+  .sales-os-card .so-cta-row {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    position: relative;
+  }
+  .sales-os-card .btn-lime {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    background: var(--lime);
+    color: var(--ink);
+    border: 1.5px solid var(--lime);
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .2s, background .2s, box-shadow .2s;
+  }
+  .sales-os-card .btn-lime:hover {
+    transform: translateY(-2px);
+    background: var(--bone);
+    text-decoration: none;
+    box-shadow: 3px 3px 0 0 var(--violet);
+  }
+  .sales-os-card .btn-ghost-lime {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px;
+    background: transparent;
+    color: var(--bone);
+    border: 1.5px solid rgba(250, 248, 241, 0.4);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: border-color .2s, color .2s;
+  }
+  .sales-os-card .btn-ghost-lime:hover {
+    border-color: var(--lime);
+    color: var(--lime);
+    text-decoration: none;
+  }
+  @media (max-width: 600px) {
+    .sales-os-card { box-shadow: 6px 6px 0 0 var(--lime); padding: 1.6rem 1.2rem; }
+    .sales-os-card::before { font-size: 120px; top: -4px; right: -4px; }
+    .sales-os-card .btn-lime,
+    .sales-os-card .btn-ghost-lime { width: 100%; justify-content: center; }
+  }
+
   /* ---------- Next chapter / manifesto ---------- */
   .next-section {
     position: relative;
@@ -3739,6 +3867,7 @@
       <a href="#education" class="hide-sm">Education</a>
       <a href="#stack" class="hide-sm">Stack</a>
       <a href="#next">Next ✦</a>
+      <a href="sales-os.html" class="nav-skill">Sales OS ↗</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -4374,6 +4503,29 @@
       <div class="next-cta-row">
         <a class="btn" href="#contact">Let's talk <span class="arr" aria-hidden="true">→</span></a>
         <span class="next-meta">Berlin · Remote-DACH · Q4 2026</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SALES OS PROMO ============ -->
+<section class="section sales-os-promo" id="sales-os" data-screen-label="Sales OS">
+  <div class="wrap">
+    <article class="sales-os-card reveal">
+      <p class="so-kicker">// 07 — skill file · open-sourced</p>
+      <h2>Sales OS — my playbook, <span class="italic">handed to your AI.</span></h2>
+      <p class="sales-os-meta">
+        <span>Markdown</span><span>Generic AI agent</span><span>~380 lines</span><span>MIT-style</span>
+      </p>
+      <p class="so-body">
+        A drop-in <strong>Sales Operating System</strong> for any AI agent — Claude, ChatGPT, custom GPT, n8n LLM node, internal copilot. Eleven sections covering discovery, region-aware outreach cadence, objection handling, the half-yearly 1:1 review I built across my key-account book, operations crisis recovery, and the prompt frameworks I actually use day-to-day.
+      </p>
+      <p class="so-body">
+        Distilled from <strong>€3.58M closed across 2023–2025</strong>, three years Top 2–3 on the sales floor, and four company all-time-high months under my team leadership. If you're building an AI agent for a sales team, point it at this.
+      </p>
+      <div class="so-cta-row">
+        <a class="btn-lime" href="sales-os.html">Read the full skill <span aria-hidden="true">→</span></a>
+        <a class="btn-ghost-lime" href="https://github.com/onurberrak/onurberrak.github.io/blob/main/SKILL.md" target="_blank" rel="noopener">View raw on GitHub ↗</a>
       </div>
     </article>
   </div>
