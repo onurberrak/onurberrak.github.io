@@ -375,6 +375,121 @@
     details.faq-item .faq-body { padding: 0 16px 16px; font-size: 14.5px; }
   }
 
+  /* ---------- Life promo section ---------- */
+  .life-promo {
+    border-top: 1px solid var(--rule);
+  }
+  .life-promo-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    padding: clamp(2.5rem, 5vw, 4rem) var(--pad);
+  }
+  @media (max-width: 760px) {
+    .life-promo-inner { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .life-promo-text .life-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin: 0 0 16px;
+    display: inline-block;
+  }
+  .life-promo-text h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.4vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: -.015em;
+    margin: 0 0 18px;
+  }
+  .life-promo-text h2 .italic { font-style: italic; color: var(--violet); }
+  .life-promo-text p {
+    color: var(--ink-2);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.6;
+    max-width: 50ch;
+    margin: 0 0 22px;
+  }
+  .life-promo-text p strong { color: var(--ink); }
+  .life-cta-row {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .life-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px 12px;
+    border: 1.5px solid var(--ink);
+    background: var(--bone);
+    color: var(--ink);
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .2s, background .2s, box-shadow .2s, color .2s;
+  }
+  .life-cta:hover {
+    transform: translateY(-2px);
+    background: var(--ink); color: var(--bone);
+    box-shadow: 3px 3px 0 0 var(--violet);
+    text-decoration: none;
+  }
+  .life-cta.ghost {
+    background: transparent;
+    border-color: var(--rule-strong);
+    color: var(--ink-2);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .02em;
+  }
+  .life-cta.ghost:hover {
+    border-color: var(--violet);
+    color: var(--violet);
+    background: transparent;
+    box-shadow: none;
+  }
+  .life-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    position: relative;
+  }
+  .life-preview-cell {
+    aspect-ratio: 4/5;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bone-2);
+    box-shadow: 2px 2px 0 0 var(--ink);
+    transition: transform .25s cubic-bezier(.22,.7,.18,1), box-shadow .25s;
+  }
+  .life-preview-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+    filter: contrast(1.02) saturate(0.96);
+    display: block;
+  }
+  .life-preview a:hover .life-preview-cell {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  .life-preview a:hover .life-preview-cell img { transform: scale(1.06); }
+  .life-preview-cell:nth-child(1) { transform: rotate(-0.6deg); }
+  .life-preview-cell:nth-child(2) { transform: rotate(0.4deg); }
+  .life-preview-cell:nth-child(3) { transform: rotate(0.5deg); }
+  .life-preview-cell:nth-child(4) { transform: rotate(-0.4deg); }
+  @media (max-width: 600px) {
+    .life-preview { gap: 6px; }
+    .life-cta { padding: 10px 16px; font-size: 13px; }
+    .life-cta.ghost { font-size: 11.5px; }
+  }
+
   /* ---------- Sales OS promo section ---------- */
   .sales-os-promo {
     position: relative;
@@ -4757,6 +4872,27 @@
           <span data-i18n="reply.card">Currently reading new messages – usually replying same day.</span>
         </div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIFE PROMO ============ -->
+<section class="life-promo" id="life-promo" data-screen-label="Life">
+  <div class="life-promo-inner">
+    <div class="life-promo-text reveal">
+      <p class="life-eyebrow">// 10 – off the clock</p>
+      <h2>And when I'm <span class="italic">not closing.</span></h2>
+      <p>A small corner of the site for the rest of life — slow walks with a camera, weekends with my partner, a fluffy supervisor at home, and the YouTube channel where we put pieces of it on the record. <strong>No names, just frames.</strong></p>
+      <div class="life-cta-row">
+        <a class="life-cta" href="life.html">Visit the album →</a>
+        <a class="life-cta ghost" href="https://www.youtube.com/@berlixiz" target="_blank" rel="noopener">@berlixiz on YouTube ↗</a>
+      </div>
+    </div>
+    <div class="life-preview reveal" aria-hidden="true">
+      <a href="life.html"><div class="life-preview-cell"><img src="assets/life/photo-02.jpg" alt="" loading="lazy" /></div></a>
+      <a href="life.html"><div class="life-preview-cell"><img src="assets/life/photo-09.jpg" alt="" loading="lazy" /></div></a>
+      <a href="life.html"><div class="life-preview-cell"><img src="assets/life/photo-14.jpg" alt="" loading="lazy" /></div></a>
+      <a href="life.html"><div class="life-preview-cell"><img src="assets/life/photo-19.jpg" alt="" loading="lazy" /></div></a>
     </div>
   </div>
 </section>
