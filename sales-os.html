@@ -323,6 +323,178 @@
   }
 
   html, body { overflow-x: hidden; max-width: 100%; }
+
+  /* ------------- Try-it-out chat demo ------------- */
+  .demo-wrap {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 0 var(--pad) clamp(2.5rem, 5vw, 4rem);
+  }
+  .demo-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--violet); margin: 0 0 14px;
+    display: inline-block;
+  }
+  .demo-headline {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.1; letter-spacing: -.015em;
+    margin: 0 0 1.4rem;
+  }
+  .demo-headline .italic { font-style: italic; color: var(--violet); }
+  .demo-shell {
+    border: 1.5px solid var(--ink);
+    background: var(--bone);
+    box-shadow: 8px 8px 0 0 var(--lime);
+    border-radius: 8px;
+    overflow: visible;
+  }
+  .demo-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1.5px solid var(--ink);
+    background: linear-gradient(to right, rgba(79,50,216,0.06), transparent 70%);
+  }
+  .demo-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--ink); color: var(--lime);
+    border: 1.5px solid var(--ink);
+    box-shadow: 2px 2px 0 0 var(--violet);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 600; font-size: 13px;
+    letter-spacing: .04em;
+    flex-shrink: 0;
+  }
+  .demo-id { flex: 1; min-width: 0; }
+  .demo-name {
+    font-weight: 600; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .demo-name .sparkle {
+    display: inline-block; margin-left: 4px;
+    animation: demoSparkle 2.4s ease-in-out infinite;
+  }
+  @keyframes demoSparkle { 0%,100%{transform: rotate(0) scale(1);} 50%{transform: rotate(20deg) scale(1.25);} }
+  .demo-status {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .04em;
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 2px;
+  }
+  .demo-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 0 0 rgba(212,255,61,.7);
+    animation: demoPulse 2s ease-out infinite;
+  }
+  @keyframes demoPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(212,255,61,.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(212,255,61,0); }
+    100% { box-shadow: 0 0 0 0 rgba(212,255,61,0); }
+  }
+  .demo-tag {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--ink-3); letter-spacing: .08em;
+  }
+  .demo-body {
+    padding: 20px;
+    min-height: 200px;
+    max-height: min(440px, 60vh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    background:
+      radial-gradient(circle at top right, rgba(79,50,216,0.04), transparent 60%),
+      radial-gradient(circle at bottom left, rgba(212,255,61,0.04), transparent 50%);
+  }
+  .demo-msg { display: flex; margin-bottom: 10px; max-width: 88%; opacity: 0; transform: translateY(8px) scale(0.96); transition: opacity .4s, transform .4s cubic-bezier(.34,1.3,.64,1); }
+  .demo-msg.in { opacity: 1; transform: none; }
+  .demo-msg.user { align-self: flex-end; margin-left: auto; }
+  .demo-bubble {
+    padding: 10px 14px 11px;
+    border-radius: 16px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .demo-msg.agent .demo-bubble {
+    background: #f4efe4;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-bottom-left-radius: 5px;
+  }
+  .demo-msg.user .demo-bubble {
+    background: var(--violet);
+    color: var(--bone);
+    border-bottom-right-radius: 5px;
+  }
+  .demo-bubble strong { font-weight: 600; }
+  .demo-bubble a {
+    color: var(--violet-ink);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+  .demo-msg.user .demo-bubble a { color: var(--lime); }
+  .demo-suggestions {
+    padding: 14px 18px 18px;
+    display: flex; flex-wrap: wrap; gap: 7px;
+    border-top: 1px solid var(--rule);
+    background: rgba(79,50,216,0.04);
+  }
+  .demo-chip {
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: .02em;
+    background: var(--bone); color: var(--ink);
+    border: 1.2px solid var(--ink);
+    padding: 7px 12px 8px;
+    border-radius: 999px;
+    cursor: pointer; pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(124, 58, 237, 0.25);
+    user-select: none;
+    transition: transform .15s, background .2s, box-shadow .2s;
+    font-weight: 500; text-transform: lowercase;
+  }
+  .demo-chip:hover:not(:disabled) {
+    background: var(--lime);
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .demo-chip:active { transform: translateY(0) scale(0.97); }
+  .demo-chip.asked, .demo-chip:disabled {
+    opacity: 0.4; cursor: default; text-decoration: line-through;
+  }
+  .demo-chip * { pointer-events: none; }
+  .demo-foot {
+    padding: 10px 18px 14px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-3);
+    background: rgba(79,50,216,0.04);
+    border-top: 1px dashed var(--rule);
+    letter-spacing: .04em;
+    line-height: 1.45;
+  }
+  .demo-typing {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 14px 16px;
+  }
+  .demo-typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink-3);
+    animation: demoDot 1.2s ease-in-out infinite;
+  }
+  .demo-typing span:nth-child(2) { animation-delay: .18s; }
+  .demo-typing span:nth-child(3) { animation-delay: .36s; }
+  @keyframes demoDot {
+    0%,60%,100% { transform: translateY(0); opacity: .35; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+  @media (max-width: 600px) {
+    .demo-shell { box-shadow: 5px 5px 0 0 var(--lime); }
+    .demo-body { max-height: min(380px, 56vh); padding: 16px; }
+    .demo-tag { display: none; }
+    .demo-chip { font-size: 11px; padding: 6px 10px 7px; }
+  }
 </style>
 </head>
 <body>
@@ -355,6 +527,43 @@
     <span>Author: Onur Berrak · Berlin</span>
   </div>
 </header>
+
+<section class="demo-wrap">
+  <p class="demo-eyebrow">// try it out</p>
+  <h2 class="demo-headline">Ask the agent <span class="italic">a question.</span></h2>
+
+  <div class="demo-shell">
+    <div class="demo-header">
+      <div class="demo-avatar" aria-hidden="true">OS</div>
+      <div class="demo-id">
+        <div class="demo-name">sales os <span class="sparkle">✦</span></div>
+        <div class="demo-status"><span class="demo-dot" aria-hidden="true"></span>demo mode · canned answers from the playbook</div>
+      </div>
+      <div class="demo-tag">// demo</div>
+    </div>
+
+    <div class="demo-body" id="demoBody">
+      <div class="demo-msg agent in">
+        <div class="demo-bubble">hi — pick a question below. these are pulled straight from the playbook on this page.</div>
+      </div>
+    </div>
+
+    <div class="demo-suggestions" id="demoSuggestions">
+      <button type="button" class="demo-chip" data-q="expensive">how do i handle "it's too expensive"?</button>
+      <button type="button" class="demo-chip" data-q="cadence">what's the right follow-up cadence in germany?</button>
+      <button type="button" class="demo-chip" data-q="chase">when should i stop chasing a cold lead?</button>
+      <button type="button" class="demo-chip" data-q="cantdeliver">customer wants something ops can't deliver. what do i say?</button>
+      <button type="button" class="demo-chip" data-q="opsfailed">operations failed a customer — what's my first move?</button>
+      <button type="button" class="demo-chip" data-q="coldemail">how long should a cold e-mail be?</button>
+      <button type="button" class="demo-chip" data-q="summarise">how do i prompt claude to summarise a thread?</button>
+      <button type="button" class="demo-chip" data-q="review">half-yearly review agenda — what do i cover?</button>
+    </div>
+
+    <p class="demo-foot">
+      ↳ this is a static demo — canned answers stitched from the playbook below. for live API integration (Anthropic, OpenAI), the same UI binds to a serverless function. ping me if you'd like that wired up.
+    </p>
+  </div>
+</section>
 
 <section class="toc">
   <div class="toc-card">
@@ -739,6 +948,116 @@ with [customer]. Sections:
     <a class="footer-cta" href="index.html">← back to portfolio</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  var body = document.getElementById('demoBody');
+  var chipsRoot = document.getElementById('demoSuggestions');
+  if (!body || !chipsRoot) return;
+
+  var flows = {
+    expensive: [
+      { from: 'user', text: 'how do i handle "it\'s too expensive"?' },
+      { from: 'agent', text: 'acknowledge first — "i hear you, price is real." then reframe: ask what the cost of <strong>not</strong> solving the problem is.' },
+      { from: 'agent', text: 'before you discount, try a smaller scope or a payment term change. if you must discount, start small and frame it as policy: <em>"i can move it 5% — that\'s what i\'m authorised to do."</em>' },
+      { from: 'agent', text: 'never fire all your weapons at once — one move per round. <a href="#objections">read §05</a>.' }
+    ],
+    cadence: [
+      { from: 'user', text: "what's the right follow-up cadence in germany?" },
+      { from: 'agent', text: 'germany is a slow-decision market. tune the cadence accordingly:' },
+      { from: 'agent', text: '<strong>touch 2:</strong> +4–5 days · <strong>touch 3:</strong> +5–7 days · <strong>touch 4 (final):</strong> +11–14 days. after that, archive with a "revisit in Q+2" reminder. don\'t keep firing. <a href="#outreach">§04</a>.' }
+    ],
+    chase: [
+      { from: 'user', text: 'when should i stop chasing a cold lead?' },
+      { from: 'agent', text: "this isn't 'give up after one missed reply.' run the <strong>full structured sequence first</strong> — touch 2, 3, 4 at the right cadence for the market, each with real value." },
+      { from: 'agent', text: 'after that — if they\'re still silent — <strong>stop</strong>. calling them ten more times kills the call you would have gotten in eighteen months when their situation changes. silence today protects future relationship. <a href="#principles">§01.6</a>.' }
+    ],
+    cantdeliver: [
+      { from: 'user', text: "customer wants something ops can't deliver. what do i say?" },
+      { from: 'agent', text: 'be the good cop, pre-position the bad cop. you <em>want</em> to help — but the no comes from somewhere else (ops, finance, policy).' },
+      { from: 'agent', text: '<em>"you\'re right — we\'d love to ship that too. operations can\'t deliver it this quarter. here\'s what i can offer in the meantime …"</em>' },
+      { from: 'agent', text: 'never promise what ops, the kitchen, or the dev team can\'t deliver. an over-promised deal is a renewal you\'ll lose. <a href="#principles">§01.5</a>.' }
+    ],
+    opsfailed: [
+      { from: 'user', text: "operations failed a customer — what's my first move?" },
+      { from: 'agent', text: '<strong>fix the problem first. root cause is for later.</strong> the customer doesn\'t need to know why yet — they need to know what you\'re doing now.' },
+      { from: 'agent', text: 'in every contact, name three things: <strong>the expectation</strong> (what they were supposed to get), <strong>the damage</strong> (what it cost them — don\'t minimise it), <strong>how we help right now</strong> (a specific action, a specific time).' },
+      { from: 'agent', text: 'and <strong>never</strong> promise it won\'t happen again. that\'s a debt you can\'t pay. promise to investigate, share findings, change a process — not "this won\'t happen again." <a href="#crisis">§07</a>.' }
+    ],
+    coldemail: [
+      { from: 'user', text: 'how long should a cold e-mail be?' },
+      { from: 'agent', text: '<strong>under 90 words.</strong> no paragraphs. no PDF attachments on first touch. no calendar links before they\'ve said yes.' },
+      { from: 'agent', text: 'three ingredients, in order: (1) one specific reference that proves you know them, (2) a hypothesis about their problem (not your product), (3) a trivial next step — 15 min, two time slots, or a single yes/no question. <a href="#outreach">§04.1</a>.' }
+    ],
+    summarise: [
+      { from: 'user', text: 'how do i prompt claude to summarise a thread?' },
+      { from: 'agent', text: 'use this prompt — ask for four specific things, no marketing language:' },
+      { from: 'agent', text: '<em>"summarise this e-mail thread. (1) latest status in one sentence. (2) open commitments — from our side, from their side. (3) required next action with owner and date. (4) any shift in tone or urgency from the most recent reply."</em>' },
+      { from: 'agent', text: 'works the same with chatgpt or any LLM. <a href="#ai">§08.3</a>.' }
+    ],
+    review: [
+      { from: 'user', text: 'half-yearly review agenda — what do i cover?' },
+      { from: 'agent', text: 'four blocks, covered in order:' },
+      { from: 'agent', text: '<strong>1. revenue health</strong> — warning signs, unresolved issues, satisfaction in their words. <strong>2. growth</strong> — parts of their org you don\'t serve, budgets you haven\'t touched. <strong>3. what they need from us</strong> — friction they\'re working around, product gaps. <strong>4. what\'s new on our side</strong> — features, SLAs, demo offer tailored to their use case.' },
+      { from: 'agent', text: 'close with <strong>one concrete commitment from each side</strong>, with owner and date. recap by e-mail within 24 hours. <a href="#kam">§06</a>.' }
+    ]
+  };
+
+  var busy = false;
+  function activate(chip) {
+    if (busy || chip.classList.contains('asked')) return;
+    var key = chip.dataset.q;
+    var flow = flows[key];
+    if (!flow) return;
+    chip.classList.add('asked');
+    chip.disabled = true;
+    run(flow);
+  }
+  chipsRoot.addEventListener('click', function (e) {
+    var chip = e.target.closest('.demo-chip');
+    if (chip) activate(chip);
+  });
+
+  function add(role, html) {
+    var d = document.createElement('div');
+    d.className = 'demo-msg ' + role;
+    d.innerHTML = '<div class="demo-bubble">' + html + '</div>';
+    body.appendChild(d);
+    requestAnimationFrame(function () { d.classList.add('in'); });
+    body.scrollTop = body.scrollHeight;
+    return d;
+  }
+  function addTyping() {
+    var d = document.createElement('div');
+    d.className = 'demo-msg agent';
+    d.innerHTML = '<div class="demo-bubble demo-typing"><span></span><span></span><span></span></div>';
+    body.appendChild(d);
+    requestAnimationFrame(function () { d.classList.add('in'); });
+    body.scrollTop = body.scrollHeight;
+    return d;
+  }
+  function run(flow) {
+    busy = true;
+    var i = 0;
+    function next() {
+      if (i >= flow.length) { busy = false; return; }
+      var m = flow[i++];
+      if (m.from === 'user') {
+        add('user', m.text);
+        setTimeout(next, 360);
+      } else {
+        var t = addTyping();
+        setTimeout(function () {
+          t.remove();
+          add('agent', m.text);
+          setTimeout(next, 260);
+        }, 600 + Math.random() * 400);
+      }
+    }
+    next();
+  }
+})();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Off-duty – Onur Berrak's life on the side</title>
+<meta name="description" content="Off the clock — street, travel, and portrait photography from across Germany and Turkey. Plus a YouTube vlog with my partner, and the cat." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #FAF8F1; --bone-2: #F2EFE3;
+    --ink: #0E0D14; --ink-2: #2A2735; --ink-3: #5C5868;
+    --rule: #1f1c2a14; --rule-strong: #1f1c2a26;
+    --violet: #4F32D8; --violet-ink: #2d1a93; --lime: #D4FF3D;
+    --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --maxw: 1080px;
+    --pad: clamp(20px, 4vw, 56px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bone); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  a { color: var(--violet); text-decoration: none; text-underline-offset: 3px; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: var(--lime); color: var(--ink); }
+  img { max-width: 100%; display: block; }
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  .nav {
+    border-bottom: 1px solid var(--rule); background: var(--bone);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto;
+    padding: 16px var(--pad);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink); letter-spacing: -.01em; }
+  .wordmark .dot { color: var(--violet); }
+  .nav-back { font-family: var(--mono); font-size: 13px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; border-bottom: 0; }
+  .nav-back:hover { color: var(--violet); text-decoration: none; }
+
+  .hero {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(3rem, 6vw, 5rem) var(--pad) clamp(2rem, 4vw, 3rem);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 1.4rem;
+    display: inline-block;
+  }
+  .hero-eyebrow::before {
+    content: ""; display: inline-block; width: 18px; height: 1px;
+    background: var(--ink-3); vertical-align: middle; margin-right: 10px; transform: translateY(-2px);
+  }
+  h1.hero-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(3rem, 8.5vw, 5.8rem); line-height: 0.98;
+    letter-spacing: -.02em; margin: 0 0 1.2rem;
+  }
+  h1.hero-title .italic { font-style: italic; }
+  h1.hero-title .acc { color: var(--violet); }
+  .hero-lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-2); max-width: 62ch; line-height: 1.55;
+    margin: 0 0 1.4rem;
+  }
+  .hero-meta {
+    padding-top: 1.4rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2);
+    display: flex; flex-wrap: wrap; gap: 8px 28px;
+  }
+  .hero-meta span:not(:first-child)::before {
+    content: ""; display: inline-block; width: 5px; height: 5px;
+    background: var(--violet); border-radius: 1px;
+    transform: rotate(45deg); margin-right: 14px; vertical-align: 1px;
+  }
+
+  /* Section wrapper */
+  .section {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(2.5rem, 5vw, 4rem) var(--pad);
+    border-top: 1px solid var(--rule);
+  }
+  .section-kicker {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--violet); margin: 0 0 14px;
+    display: inline-block;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2rem, 4.4vw, 2.8rem);
+    line-height: 1.05; letter-spacing: -.015em;
+    margin: 0 0 1.4rem;
+  }
+  h2 .italic { font-style: italic; }
+  p { margin: 0 0 1.05em; color: var(--ink-2); max-width: 62ch; }
+  p strong { color: var(--ink); font-weight: 600; }
+
+  /* YouTube card */
+  .yt-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) 1fr;
+    gap: clamp(20px, 4vw, 36px);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    background: var(--ink); color: var(--bone);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    box-shadow: 8px 8px 0 0 var(--violet);
+    position: relative;
+    overflow: hidden;
+  }
+  .yt-card::before {
+    content: "▶"; position: absolute;
+    bottom: -40px; right: -10px; font-size: 200px;
+    color: rgba(212,255,61,0.07); pointer-events: none; line-height: 1;
+  }
+  .yt-card h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem); line-height: 1.05;
+    margin: 0 0 12px; color: var(--bone);
+    position: relative;
+  }
+  .yt-card h3 .italic { font-style: italic; color: var(--lime); }
+  .yt-card p { color: rgba(250,248,241,0.78); position: relative; max-width: none; }
+  .yt-card p strong { color: var(--bone); }
+  .yt-card-stats {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(212,255,61,0.7);
+    margin: 0 0 18px; position: relative;
+  }
+  .yt-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px;
+    background: var(--lime); color: var(--ink);
+    border: 1.5px solid var(--lime); border-radius: 999px;
+    font-family: var(--sans); font-weight: 600; font-size: 14px;
+    text-decoration: none; position: relative;
+    transition: transform .2s, background .2s, box-shadow .2s;
+  }
+  .yt-cta:hover {
+    transform: translateY(-2px); background: var(--bone); text-decoration: none;
+    box-shadow: 3px 3px 0 0 var(--violet);
+  }
+  .yt-tile {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, rgba(212,255,61,0.18), rgba(79,50,216,0.4)),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 10px);
+    border: 1.5px solid rgba(250,248,241,0.2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .yt-tile::after {
+    content: "▶";
+    color: var(--lime);
+    font-size: 64px;
+    text-shadow: 4px 4px 0 var(--ink);
+  }
+  .yt-tile-text {
+    position: absolute;
+    bottom: 12px; left: 14px;
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--bone);
+    background: var(--ink);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+  @media (max-width: 760px) {
+    .yt-card { grid-template-columns: 1fr; }
+    .yt-tile { order: -1; }
+    .yt-card { box-shadow: 5px 5px 0 0 var(--violet); }
+  }
+
+  /* About / personal block */
+  .personal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 4vw, 40px);
+  }
+  @media (max-width: 760px) { .personal-grid { grid-template-columns: 1fr; } }
+  .personal-card {
+    padding: 22px 24px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 6px;
+    background: var(--bone);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .personal-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 0 var(--ink);
+    border-color: var(--ink);
+  }
+  .personal-card h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 1.5rem; margin: 0 0 8px;
+  }
+  .personal-card h3 .italic { font-style: italic; color: var(--violet); }
+  .personal-card .pc-icon {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--violet); margin-bottom: 10px; display: inline-block;
+  }
+  .personal-card p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+
+  /* Photo album */
+  .album-meta {
+    font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: .04em; color: var(--ink-3);
+    margin: 0 0 1.6rem;
+  }
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+    gap: 12px;
+  }
+  .album-cell {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    background: var(--bone-2);
+    box-shadow: 2px 2px 0 0 var(--ink);
+    transition: transform .25s cubic-bezier(.22,.7,.18,1), box-shadow .25s;
+    cursor: zoom-in;
+    position: relative;
+  }
+  .album-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+    filter: contrast(1.02) saturate(0.96);
+  }
+  .album-cell:hover {
+    transform: translate(-2px, -2px) rotate(-0.3deg);
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  .album-cell:hover img { transform: scale(1.05); }
+  .album-cell:nth-child(7n+1) { transform: rotate(-0.6deg); }
+  .album-cell:nth-child(7n+3) { transform: rotate(0.4deg); }
+  .album-cell:nth-child(7n+5) { transform: rotate(-0.3deg); }
+  .album-cell:nth-child(7n+6) { transform: rotate(0.5deg); }
+
+  /* Lightbox overlay */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(14, 13, 20, 0.92);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 96vw; max-height: 92vh;
+    border: 2px solid var(--bone);
+    box-shadow: 8px 8px 0 0 var(--violet);
+    border-radius: 2px;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 18px; right: 22px;
+    background: var(--bone); color: var(--ink);
+    border: 2px solid var(--bone); border-radius: 999px;
+    width: 42px; height: 42px;
+    font-size: 22px; line-height: 1;
+    cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 101;
+  }
+  .lightbox-close:hover { background: var(--lime); }
+  .lightbox-meta {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 11.5px;
+    color: var(--bone); letter-spacing: .08em;
+    background: rgba(14, 13, 20, 0.7);
+    padding: 6px 12px; border-radius: 999px;
+    z-index: 101;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--rule); background: var(--bone);
+    padding: clamp(2rem, 4vw, 3rem) var(--pad);
+    margin-top: 2rem;
+  }
+  .footer-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--ink-3); letter-spacing: .04em;
+  }
+  .footer-cta {
+    font-family: var(--mono); font-size: 12px;
+    background: var(--ink); color: var(--bone);
+    padding: 8px 14px 9px; border-radius: 999px;
+    border-bottom: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background .2s, transform .2s;
+  }
+  .footer-cta:hover { background: var(--violet); text-decoration: none; transform: translateY(-1px); }
+
+  @media (max-width: 600px) {
+    h1.hero-title { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+    .hero { padding: 2.4rem var(--pad) 1.8rem; }
+    .section { padding: 2rem var(--pad); }
+    .album-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .yt-card { padding: 1.4rem; }
+    .lightbox img { max-width: 100vw; max-height: 85vh; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="index.html">Onur Berrak<span class="dot">.</span></a>
+    <a class="nav-back" href="index.html">← back to portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="hero-eyebrow">// off the clock</p>
+  <h1 class="hero-title">Life <span class="italic acc">on the side.</span></h1>
+  <p class="hero-lede">
+    Sales is the day job. The rest is everything that makes the day job possible — long walks with a camera, weekends with my partner, a small fluffy supervisor at home, and a YouTube channel where we put pieces of it on the record. <strong>Names off the record here</strong> — but if you've stumbled onto this corner, you already get the vibe.
+  </p>
+  <div class="hero-meta">
+    <span>Photography · street · travel · portrait</span>
+    <span>Vlog · @berlixiz</span>
+    <span>Berlin · Istanbul · everywhere in between</span>
+  </div>
+</header>
+
+<section class="section">
+  <p class="section-kicker">// vlog</p>
+  <h2>A YouTube corner — <span class="italic">@berlixiz.</span></h2>
+  <div class="yt-card">
+    <div>
+      <h3>Travel, food, <span class="italic">us.</span></h3>
+      <p class="yt-card-stats">
+        YouTube · Travel + lifestyle · German &amp; Turkish
+      </p>
+      <p>
+        A vlog channel I run with my partner — bits of life from across Berlin and Istanbul, occasional cooking, occasional trips, occasionally just our cat looking offended. <strong>Not optimised, not produced</strong> — just the parts of life we wanted to remember.
+      </p>
+      <a class="yt-cta" href="https://www.youtube.com/@berlixiz" target="_blank" rel="noopener">
+        Watch on YouTube <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="yt-tile" aria-hidden="true">
+      <span class="yt-tile-text">@berlixiz</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-kicker">// the basics</p>
+  <h2>Things that <span class="italic">aren't sales.</span></h2>
+  <div class="personal-grid">
+    <article class="personal-card">
+      <span class="pc-icon">// camera</span>
+      <h3>Photography, <span class="italic">slow.</span></h3>
+      <p>Street, travel, the occasional portrait. I shoot more than I post — most of it lives on a hard drive nobody else will see. The 21 frames below are a small album: across Berlin, Istanbul, and a couple of stops in between.</p>
+    </article>
+    <article class="personal-card">
+      <span class="pc-icon">// home</span>
+      <h3>Two of us, <span class="italic">and a cat.</span></h3>
+      <p>The constant. My partner co-runs the YouTube channel and is the reason most of the good photos exist (someone has to be in front of the lens). The cat does her own marketing.</p>
+    </article>
+    <article class="personal-card">
+      <span class="pc-icon">// elsewhere</span>
+      <h3>Cities I've worn <span class="italic">in my shoes.</span></h3>
+      <p>Karlsruhe, Stuttgart, Böblingen, Istanbul, Berlin. Each one left something — the engineering in Karlsruhe, the patience in Stuttgart, the customer obsession from store ops in Böblingen, the discipline of the Istanbul commercial floors, and Berlin is where they all came together.</p>
+    </article>
+    <article class="personal-card">
+      <span class="pc-icon">// off-grid</span>
+      <h3>Walking, <span class="italic">mostly.</span></h3>
+      <p>Long-form walks with the camera and no plan are how I think. Most of the decisions in this portfolio were made between a U-Bahn stop and a coffee.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-kicker">// the album</p>
+  <h2>Twenty-one frames, <span class="italic">no captions.</span></h2>
+  <p class="album-meta">tap any frame to open · click outside or hit Esc to close</p>
+  <div class="album-grid" id="album">
+    <div class="album-cell"><img src="assets/life/photo-01.jpg" alt="Frame 01" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-02.jpg" alt="Frame 02" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-03.jpg" alt="Frame 03" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-04.jpg" alt="Frame 04" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-05.jpg" alt="Frame 05" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-06.jpg" alt="Frame 06" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-07.jpg" alt="Frame 07" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-08.jpg" alt="Frame 08" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-09.jpg" alt="Frame 09" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-10.jpg" alt="Frame 10" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-11.jpg" alt="Frame 11" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-12.jpg" alt="Frame 12" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-13.jpg" alt="Frame 13" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-14.jpg" alt="Frame 14" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-15.jpg" alt="Frame 15" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-16.jpg" alt="Frame 16" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-17.jpg" alt="Frame 17" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-18.jpg" alt="Frame 18" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-19.jpg" alt="Frame 19" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-20.jpg" alt="Frame 20" loading="lazy" /></div>
+    <div class="album-cell"><img src="assets/life/photo-21.jpg" alt="Frame 21" loading="lazy" /></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+  <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-meta" id="lightboxMeta"></div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Onur Berrak · Berlin · Built in Claude Code</span>
+    <a class="footer-cta" href="index.html">← back to portfolio</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var album = document.getElementById('album');
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  var meta = document.getElementById('lightboxMeta');
+  var close = document.getElementById('lightboxClose');
+  if (!album || !lb) return;
+
+  var cells = album.querySelectorAll('.album-cell img');
+  var current = -1;
+
+  function open(i) {
+    if (i < 0 || i >= cells.length) return;
+    current = i;
+    img.src = cells[i].src;
+    img.alt = cells[i].alt;
+    meta.textContent = (i + 1) + ' / ' + cells.length;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function shut() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    current = -1;
+  }
+  function next(step) {
+    if (current < 0) return;
+    var n = (current + step + cells.length) % cells.length;
+    open(n);
+  }
+
+  cells.forEach(function (el, i) {
+    el.addEventListener('click', function () { open(i); });
+  });
+  close.addEventListener('click', shut);
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) shut();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') shut();
+    if (e.key === 'ArrowRight') next(1);
+    if (e.key === 'ArrowLeft') next(-1);
+  });
+})();
+</script>
+
+</body>
+</html>

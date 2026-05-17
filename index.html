@@ -309,6 +309,71 @@
   .nav-skill::after {
     background: var(--violet) !important;
   }
+  .nav-life {
+    font-family: var(--serif) !important;
+    font-style: italic !important;
+    font-size: 15px !important;
+    color: var(--ink) !important;
+  }
+  .nav-life::after { background: var(--violet) !important; }
+
+  /* ---------- FAQ section ---------- */
+  .faq-list {
+    display: flex; flex-direction: column;
+    gap: 10px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  details.faq-item {
+    border: 1px solid var(--rule-strong);
+    border-radius: 6px;
+    background: var(--bone);
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  details.faq-item[open] {
+    border-color: var(--ink);
+    box-shadow: 4px 4px 0 0 var(--violet);
+    transform: translate(-1px, -1px);
+  }
+  details.faq-item summary {
+    list-style: none;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    user-select: none;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item summary::after {
+    content: "+";
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--violet);
+    transition: transform .2s ease;
+  }
+  details.faq-item[open] summary::after { content: "−"; transform: rotate(0); }
+  details.faq-item summary:hover { color: var(--violet); }
+  details.faq-item .faq-body {
+    padding: 0 22px 20px;
+    color: var(--ink-2);
+    font-size: 15.5px;
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+  details.faq-item .faq-body p { margin: 0 0 0.9em; }
+  details.faq-item .faq-body p:last-child { margin: 0; }
+  details.faq-item .faq-body strong { color: var(--ink); }
+  @media (max-width: 600px) {
+    details.faq-item summary { padding: 14px 16px; font-size: 15px; }
+    details.faq-item .faq-body { padding: 0 16px 16px; font-size: 14.5px; }
+  }
 
   /* ---------- Sales OS promo section ---------- */
   .sales-os-promo {
@@ -3868,6 +3933,8 @@
       <a href="#stack" class="hide-sm">Stack</a>
       <a href="#next">Next ✦</a>
       <a href="sales-os.html" class="nav-skill">Sales OS ↗</a>
+      <a href="life.html" class="nav-life hide-sm">Life ↗</a>
+      <a href="#faq" class="hide-sm">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -4531,12 +4598,101 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq" data-screen-label="FAQ">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">// 08 – faq</div>
+        <h2>Ten questions <span class="italic">people keep asking.</span></h2>
+      </div>
+      <div class="right">
+        <p class="mono" style="max-width:42ch;color:var(--ink-2);text-transform:none;letter-spacing:.02em;font-size:13px;line-height:1.55;">Straight answers — recruiter to recruiter, founder to founder, hiring manager to candidate. Tap any to open.</p>
+      </div>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>Why are you leaving B2B sales for tech?</summary>
+        <div class="faq-body">
+          <p>I'm not leaving sales — I'm moving it where it matters next. The next decade of commercial work runs on AI, automation and customer signal travelling faster than any quarterly cadence. I want to be on the inside of the companies building that, not watching from the outside.</p>
+          <p>Eleven years of enterprise relationship muscle plus deliberate AI fluency — the platforms I'd sell into are the platforms I already use day-to-day.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What roles are you open to?</summary>
+        <div class="faq-body">
+          <p>Senior key account, sales leadership, GTM automation, customer-success-meets-AI. Anywhere enterprise relationship instincts plug into modern tooling. Berlin or remote-DACH primarily; happy to talk international if the team and the problem are right.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Berlin only, or remote-DACH, or international?</summary>
+        <div class="faq-body">
+          <p>Berlin first — it's home base, family, three languages, CET. Remote-DACH yes. International for the right role; willing to travel.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What's your notice period?</summary>
+        <div class="faq-body">
+          <p>Standard German notice. Manageable for the right role — we'll work out timing in conversation, and I'd rather leave aveato well than fast.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you have right-to-work in Germany?</summary>
+        <div class="faq-body">
+          <p><strong>Yes.</strong> Long-term resident, full work authorisation. German naturalisation in progress.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>You don't have tech-sector experience — why should we trust this?</summary>
+        <div class="faq-body">
+          <p>Fair question. I've spent eleven years selling and operating in complex environments — global supply chains, regulated hospitality, enterprise procurement teams that don't move on charm.</p>
+          <p>AI fluency I've built deliberately: <strong>AWS ML &amp; AI Fundamentals</strong> in 2025, daily Claude usage for thread summarisation and offer drafts, n8n workflows in production, prompt frameworks for quarterly review prep. The platforms I'd sell into are the platforms I already use.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What's your day-to-day with AI tools actually like?</summary>
+        <div class="faq-body">
+          <p>Claude for summarising long client threads, drafting offers, briefing the kitchen team. n8n for follow-up sequences and CRM automation. Prompt frameworks for repeat work — quarterly reviews, account snapshots, half-yearly recap e-mails. None of it is theatre — they're shipping deliverables I'd otherwise spend half a day on.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Open to fractional, contract, part-time — or full-time only?</summary>
+        <div class="faq-body">
+          <p>Open to anything that solves a real problem. <strong>Flexible on form, picky on problem.</strong> Full-time is the default; contract / advisory / fractional are on the table if the work calls for it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Which cities have you actually worked in?</summary>
+        <div class="faq-body">
+          <p>Karlsruhe (engineering at KIT) → Stuttgart (media studies) → Böblingen, Baden-Württemberg (store manager) → Istanbul (HR for an Inditex supplier, digital agency, trading company) → Berlin (3.5+ years at aveato, current home base). Each stop left something — Berlin is where they all came together.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What kind of company <em>won't</em> you work for?</summary>
+        <div class="faq-body">
+          <p>Anything where the customer is a unit of revenue first and a human second. I've spent my career being the customer's one phone number — the company I join next has to think about customers the same way. If the brief is "close at any cost", we won't enjoy each other.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact" data-screen-label="Contact">
   <div class="wrap">
     <div class="section-head">
       <div class="left">
-        <div class="eyebrow">// 08 – contact</div>
+        <div class="eyebrow">// 09 – contact</div>
         <div class="contact-headline-wrap">
           <h2 data-i18n="contact.title" data-i18n-html="true">Let's <span class="italic">talk.</span></h2>
           <span class="stick violet contact-stick" aria-hidden="true" data-i18n="contact.stick">Replies &lt; 24h</span>
