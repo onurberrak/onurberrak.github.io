@@ -270,6 +270,96 @@
     .hero { padding: 2.4rem var(--pad) 1.6rem; }
     .wf { padding: 2rem var(--pad); }
   }
+
+  /* ---------- Implementation accordions ---------- */
+  details.impl {
+    max-width: 900px;
+    margin: 0 auto 12px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 6px;
+    background: var(--bone);
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  details.impl[open] {
+    border-color: var(--ink);
+    box-shadow: 5px 5px 0 0 var(--violet);
+    transform: translate(-1px, -1px);
+  }
+  details.impl summary {
+    list-style: none;
+    padding: 16px 22px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px;
+    user-select: none;
+  }
+  details.impl summary::-webkit-details-marker { display: none; }
+  details.impl summary span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--violet-ink);
+    background: rgba(79,50,216,0.10);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(79,50,216,0.25);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  details.impl summary::after {
+    content: "+";
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 20px;
+    line-height: 1;
+    color: var(--violet);
+    margin-left: 8px;
+  }
+  details.impl[open] summary::after { content: "−"; }
+  details.impl .impl-body {
+    padding: 4px 22px 22px;
+    color: var(--ink-2);
+  }
+  details.impl h4 {
+    margin: 1.4em 0 .6em;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--violet);
+    font-weight: 500;
+  }
+  details.impl h4:first-of-type { margin-top: .8em; }
+  details.impl pre {
+    margin: 0 0 1em;
+    padding: 14px 16px;
+    background: var(--bone-2);
+    border: 1px solid var(--rule-strong);
+    border-radius: 4px;
+    overflow-x: auto;
+    line-height: 1.5;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink);
+    -webkit-overflow-scrolling: touch;
+  }
+  details.impl pre code { font: inherit; background: transparent; border: 0; padding: 0; }
+  .impl-foot {
+    max-width: 900px; margin: 1.4rem auto 0;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .02em; line-height: 1.5;
+  }
+  @media (max-width: 600px) {
+    details.impl summary { padding: 13px 16px; font-size: 14px; gap: 8px; }
+    details.impl summary span { font-size: 9.5px; padding: 2px 8px; }
+    details.impl .impl-body { padding: 0 14px 18px; }
+    details.impl pre { padding: 12px; font-size: 10.5px; }
+  }
 </style>
 </head>
 <body>
@@ -573,10 +663,10 @@
   <p class="wf-kicker">// 06 – job hunt OS · personal</p>
   <h2 class="wf-title">I built one for <span class="italic">my own search, too.</span></h2>
   <p class="wf-tagline">
-    The dogfood proof. Same shape as the sales workflows above – but pointed at my own job hunt. AI does the research, drafts the outreach, queues it for me to review. I keep the human-in-the-loop on every send (LinkedIn ToS-friendly and recruiter-respecting).
+    The dogfood proof. Same shape as the sales workflows above, pointed at my own job hunt. Pulls from <strong>LinkedIn, Stepstone, Indeed, Welcome to the Jungle and Otta</strong>; AI matches against my ICP (DACH / IE / UK · sales, KAM, sales leadership); drafts cover letter + LinkedIn note + Easy-Apply answers; and queues every send for my review. Post-apply, a sub-loop drafts the LinkedIn connect note and a follow-up message that fires the moment the request is accepted.
   </p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span><span class="t-violet">Claude · web search</span><span>Perplexity</span><span>Apollo.io</span><span class="t-gold">Claude · drafting</span><span>Notion</span><span class="t-lime">Slack queue</span>
+    <span class="t-ink">n8n</span><span class="t-violet">RSS · scrapers</span><span>LinkedIn · Stepstone · Indeed · WTJ · Otta</span><span class="t-gold">Claude</span><span>Apollo.io</span><span>Notion · Slack</span><span class="t-lime">human-approve send</span>
   </div>
 
   <div class="canvas-wrap">
@@ -591,33 +681,319 @@
       </svg>
 
       <div class="node trigger" style="left:0; top:20px; width:150px;">
-        <div class="node-head"><div class="node-name">Daily 08:00 scan</div><span class="node-tool">cron</span></div>
-        <p class="node-sub">Criteria · regions · titles</p>
+        <div class="node-head"><div class="node-name">Daily multi-site scan</div><span class="node-tool">cron · 08:00</span></div>
+        <p class="node-sub">LinkedIn · Stepstone · Indeed · WTJ · Otta</p>
       </div>
       <div class="node ai" style="left:180px; top:20px; width:150px;">
-        <div class="node-head"><div class="node-name">Match jobs to ICP</div><span class="node-tool">claude · web</span></div>
-        <p class="node-sub">DACH · IE · UK · sales/KAM</p>
+        <div class="node-head"><div class="node-name">ICP match + score</div><span class="node-tool">claude</span></div>
+        <p class="node-sub">DACH/IE/UK · sales/KAM filter</p>
       </div>
-      <div class="node" style="left:360px; top:20px; width:150px;">
-        <div class="node-head"><div class="node-name">Find decision-maker</div><span class="node-tool">apollo</span></div>
-        <p class="node-sub">Hiring manager · TA · founder</p>
+      <div class="node ai" style="left:360px; top:20px; width:150px;">
+        <div class="node-head"><div class="node-name">Cover + Easy-Apply draft</div><span class="node-tool">claude</span></div>
+        <p class="node-sub">Cover letter · form answers · LI note</p>
       </div>
       <div class="node output" style="left:540px; top:20px; width:150px;">
-        <div class="node-head"><div class="node-name">Review queue</div><span class="node-tool">slack</span></div>
-        <p class="node-sub">I approve · one click sent</p>
+        <div class="node-head"><div class="node-name">Review queue → apply</div><span class="node-tool">slack · I send</span></div>
+        <p class="node-sub">One tap submit · custom forms copy-paste</p>
       </div>
       <div class="node ai" data-branch="true" style="left:180px; top:150px; width:150px;">
-        <div class="node-head"><div class="node-name">Personalised draft</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">Cover letter + LinkedIn note</p>
+        <div class="node-head"><div class="node-name">Post-apply LI outreach</div><span class="node-tool">claude · apollo</span></div>
+        <p class="node-sub">Connect note · auto-msg on accept (I review)</p>
       </div>
-      <span class="canvas-label" style="left:355px; top:118px;">draft per role</span>
+      <span class="canvas-label" style="left:355px; top:118px;">after submit</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>Same pattern as the sales workflows – AI runs the research and drafting, <strong>I stay the human on every send</strong>. No bots in your inbox, no auto-applies from a stranger; just a faster, more thoughtful job hunt. LinkedIn-ToS-safe by design – nothing is sent without me reading it first.</p>
+    <p>From "5 hours scrolling job boards" to <strong>"morning Slack digest with 8 fits, each with cover letter draft + Easy-Apply answers pre-filled."</strong> Easy-Apply forms: one tap to submit. Custom forms: AI-drafted answers copy-paste ready. Post-apply, a sub-loop drafts the LinkedIn connect note and a thank-you message that fires the moment the request is accepted – all human-approved. <strong>LinkedIn-ToS-safe by design</strong> – nothing leaves without me reading it first, no auto-spam, no recruiter-spam.</p>
   </div>
+</section>
+
+<!-- ============ IMPLEMENTATION TEMPLATES ============ -->
+<section class="wf" id="impl">
+  <p class="wf-kicker">// implementation · n8n + claude templates</p>
+  <h2 class="wf-title">The wiring, <span class="italic">opened up.</span></h2>
+  <p class="wf-tagline">
+    For each workflow above: the n8n node sequence and the Claude prompts that do the heavy lifting. Drop these into n8n, swap in your API keys and ICP rules, and the loop is yours. Production-tested patterns, not hand-wavy pseudo-code.
+  </p>
+
+  <details class="impl">
+    <summary>01 · Outbound machine <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Cron (Schedule Trigger)            · daily 06:00
+2. HTTP Request → Apollo            · POST /v1/mixed_people/search
+                                       body: ICP filters (titles, employees, region, signals)
+3. Function (n8n)                   · dedupe vs. existing HubSpot contacts
+4. HTTP Request → Anthropic         · POST /v1/messages, claude-sonnet-4-7
+                                       prompt: fit-score (see below)
+5. IF node                          · score &gt;= 7 ? branch
+   ├─ 6a. HTTP → Instantly          · POST /api/v1/lead/add
+   │                                  campaign: "EU outbound · sales leaders"
+   └─ 6b. HTTP → HubSpot            · contact create with tag "nurture-low-fit"
+7. Webhook (Instantly reply)        · listen on /webhook/reply
+8. HTTP → Anthropic                 · classify reply (interested / not now / etc.)
+9. HTTP → HubSpot                   · create deal
+10. Slack → channel #sales-warm     · DM the KAM with full context</code></pre>
+      <h4>// claude · fit scoring prompt</h4>
+<pre><code>You are scoring a B2B sales lead against this ICP:
+- Companies: 50–500 employees, B2B SaaS or business services, DACH or EU
+- Buyer titles: Head of Sales, VP Sales, CRO, Founder, RevOps lead
+- Signals: hiring sales reps, recent funding, expansion into DACH
+
+LEAD:
+{ name, title, company, headcount, industry, region, signals }
+
+Return JSON only:
+{
+  "score": &lt;1-10&gt;,
+  "reason": "&lt;one sentence&gt;",
+  "top_question": "&lt;one discovery question tailored to them&gt;"
+}
+No prose, no markdown, no apologies.</code></pre>
+    </div>
+  </details>
+
+  <details class="impl">
+    <summary>02 · Inbound lead triage <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Webhook (Trigger)                · POST /webhook/contact-form
+2. HTTP → Apollo                    · POST /v1/people/match (email → enrich)
+3. HTTP → Anthropic                 · claude-sonnet-4-7 · brief + score
+                                       (see prompt below)
+4. Switch node (by score)
+   ├─ score &gt;= 8 → Slack DM         · ping KAM on duty, full brief
+   ├─ score 4–7  → HubSpot          · add to nurture sequence
+   └─ score &lt; 4   → HubSpot         · archive with reason
+5. HubSpot                          · create deal, attach AI brief as note</code></pre>
+      <h4>// claude · qualification prompt</h4>
+<pre><code>You read inbound contact form submissions for a B2B sales org.
+
+Form text:
+"""
+{{ form.message }}
+"""
+
+Enrichment context:
+{ title, company, headcount, industry, region }
+
+Return JSON only:
+{
+  "score": &lt;1-10&gt;,
+  "summary": "&lt;one-line who they are and what they want&gt;",
+  "three_questions": [ "&lt;Q1&gt;", "&lt;Q2&gt;", "&lt;Q3&gt;" ],
+  "two_hypotheses": [
+    "&lt;what their underlying problem might be&gt;",
+    "&lt;alternative read of the situation&gt;"
+  ],
+  "urgency_signal": "&lt;hot / warm / cold&gt;"
+}</code></pre>
+    </div>
+  </details>
+
+  <details class="impl">
+    <summary>03 · Half-yearly review prep <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Cron                             · check daily for calendar events tagged "review"
+2. Google Calendar (or Outlook)     · find events at T-7 days
+3. HTTP → HubSpot                   · pull last 6 months: deals, tickets,
+                                       activity, NPS, revenue
+4. Gmail API (or Outlook)           · pull e-mail thread digest with customer
+                                       (subject + body excerpt + dates)
+5. HTTP → Anthropic                 · claude-sonnet-4-7 · snapshot (prompt below)
+6. Notion API                       · upsert page into account database
+7. Slack DM → KAM                   · link + 60-sec summary</code></pre>
+      <h4>// claude · review snapshot prompt</h4>
+<pre><code>You write half-yearly customer review briefs for a B2B sales lead.
+Be specific, no marketing language, no hedging.
+
+Customer: {{ account.name }}
+Period: last 6 months vs. prior 6 months
+
+Data:
+- HubSpot snapshot: { revenue, deals_closed, tickets_open,
+                      escalations_in_period, nps_movement }
+- E-mail digest: {{ thread_summary }}
+
+Output a structured one-page brief:
+1. Revenue health (warning signs, unresolved issues, sentiment)
+2. Growth conversations (parts of their org we don't serve yet,
+   budgets we haven't touched, things they wished we offered)
+3. What's new on our side they should know about
+4. Three suggested talk-tracks for the meeting,
+   ordered by importance
+
+Max 350 words. End with one specific commitment we should ask for.</code></pre>
+    </div>
+  </details>
+
+  <details class="impl">
+    <summary>04 · Renewal radar <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Cron                             · daily 06:00
+2. HTTP → HubSpot                   · query contracts expiring in 180 / 120 / 60 days
+3. Loop over each account
+4. HTTP → HubSpot                   · pull engagement: last 90 days activity,
+                                       open tickets, NPS, expansion notes
+5. HTTP → Anthropic                 · risk-score per account (prompt below)
+6. Switch node
+   ├─ at-risk    → Slack #renewals (alert + recovery action)
+   ├─ on-track   → Calendar pre-book renewal conversation
+   └─ expansion  → HubSpot deal create with note
+7. HubSpot                          · log next-action with owner + date</code></pre>
+      <h4>// claude · renewal risk prompt</h4>
+<pre><code>You evaluate B2B account renewal risk for a sales lead.
+
+Account: {{ account.name }} · ACV €{{ acv }} · renewal in {{ days_to_renewal }} days
+
+Signals:
+- Last 90d activity: {{ activity }}
+- Open tickets: {{ tickets }}
+- NPS trend: {{ nps_trend }}
+- Last review meeting: {{ last_review_date }}
+- Recent escalations: {{ escalations }}
+
+Return JSON only:
+{
+  "classification": "at-risk" | "on-track" | "expansion-opportunity",
+  "confidence": &lt;0.0-1.0&gt;,
+  "reason": "&lt;one paragraph why&gt;",
+  "recommended_action": "&lt;the specific next move&gt;",
+  "owner": "KAM" | "CSM" | "exec"
+}</code></pre>
+    </div>
+  </details>
+
+  <details class="impl">
+    <summary>05 · Crisis escalation routing <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Inbox watcher (Gmail / Outlook)  · sentiment trigger or keyword match
+                                       (delay, complaint, missing, unacceptable, …)
+2. HTTP → Anthropic                 · triage + draft (see prompts below)
+3. Switch on category
+   ├─ ops      → Slack #ops-escalations
+   ├─ billing  → Slack #billing
+   ├─ product  → Slack #product
+   └─ sla      → Slack #sla-watch
+4. Always: tag KAM on the thread
+5. HubSpot                          · create ticket, attach AI draft
+6. Gmail draft                      · save Claude's acknowledgement as draft
+7. Slack DM → KAM                   · "draft is in your inbox, read and ship"</code></pre>
+      <h4>// claude · triage + acknowledgement prompt</h4>
+<pre><code>You handle an angry customer e-mail. Two tasks:
+
+(A) Triage. Return JSON:
+{
+  "category": "ops" | "billing" | "product" | "sla",
+  "severity": 1 | 2 | 3,
+  "expectation": "&lt;what the customer expected&gt;",
+  "damage": "&lt;what the failure cost them&gt;"
+}
+
+(B) Draft a reply for the KAM to send. Rules:
+- Acknowledge first. Don't explain.
+- Name the expectation + damage clearly.
+- One specific recovery action with a time.
+- Offer one toolkit piece (credit / expedite / replacement) — only one.
+- DO NOT promise "this won't happen again".
+- DO NOT discuss root cause in this reply.
+- Max 120 words. Plain text. No marketing language.
+
+Customer e-mail:
+"""
+{{ email_body }}
+"""</code></pre>
+    </div>
+  </details>
+
+  <details class="impl">
+    <summary>06 · Job Hunt OS · personal <span>n8n + Claude</span></summary>
+    <div class="impl-body">
+      <h4>// n8n nodes</h4>
+<pre><code>1. Cron                             · daily 08:00
+2. RSS feeds + scrapers             · LinkedIn Jobs (saved searches RSS),
+                                       Stepstone search URL, Indeed feed,
+                                       Welcome to the Jungle, Otta
+3. Function (n8n)                   · dedupe across sources by company + title
+4. HTTP → Anthropic                 · claude-sonnet-4-7 · ICP match + score
+                                       (prompt below)
+5. Filter                           · score &gt;= 7
+6. HTTP → Apollo                    · find hiring decision-maker
+                                       (recruiter, hiring manager, founder)
+7. HTTP → Anthropic                 · draft cover letter + Easy-Apply answers
+                                       + LinkedIn connect note
+8. Notion API                       · upsert into "active applications" database
+9. Slack DM → me                    · digest with all drafts, one tap to send each
+10. [Manual] Apply on the platform (Easy Apply auto-fill or copy-paste)
+11. [Manual] Send LinkedIn connect request to decision-maker
+12. Webhook (LinkedIn connect accepted, via PhantomBuster polling)
+13. HTTP → Anthropic                · draft a thank-you / intro DM
+14. Slack DM → me                   · "ready to send, here it is" — I review &amp; ship</code></pre>
+      <h4>// claude · job fit prompt</h4>
+<pre><code>You match job listings against my career ICP.
+
+ICP (mine):
+- Roles: Sales, Account Management, Key Account, Sales Leadership,
+  GTM Automation, Customer Success
+- Regions: Germany / DACH / Ireland / UK
+- Type: full-time only
+- Company shape: B2B SaaS, AI-native preferred, enterprise customers
+- Tools fluency I'd love to extend: HubSpot, Apollo, Claude, n8n
+
+JOB LISTING:
+{ title, company, location, description, posted_date, source }
+
+Return JSON only:
+{
+  "score": &lt;1-10&gt;,
+  "fit_summary": "&lt;why this is or isn't a match for me, one sentence&gt;",
+  "red_flags": [ "&lt;flag 1, if any&gt;", "&lt;flag 2&gt;" ],
+  "cover_letter_angle": "&lt;one-line hook to lead the cover letter with&gt;"
+}</code></pre>
+      <h4>// claude · cover letter + outreach prompt</h4>
+<pre><code>You write the first draft of a job application for Onur Berrak.
+
+CONTEXT:
+- 11 years B2B sales, last 3.5 at aveato (Berlin's largest B2B caterer)
+- €3.58M closed across 2023–2025; Top 2–3 of the sales floor 3 yrs running
+- AI-native operator: Claude / n8n / HubSpot / AWS ML+AI Fundamentals
+- Trilingual: TR native, DE C1 (DSD II), EN B1
+
+ROLE:
+{ company, title, description, hiring_manager_name }
+
+Produce three drafts:
+
+1. COVER LETTER (max 200 words):
+   - Open with what they're solving for (from the JD).
+   - One concrete sales outcome that maps to their need.
+   - Why now: I want sales-with-AI roles, not pure sales.
+   - Close with a specific next step (15 min call).
+   - No marketing clichés. No "passionate". No "synergy".
+
+2. LINKEDIN CONNECT NOTE (max 300 chars):
+   - Reference one specific thing about them or the company.
+   - Hint at the application but don't sell it.
+   - Sign off naturally.
+
+3. POST-CONNECT MESSAGE (max 600 chars, sent only AFTER they accept):
+   - Thank them.
+   - One paragraph why I applied.
+   - Ask the smallest possible question (e.g. "is hiring still active?").
+   - Don't pitch.
+
+Return as JSON with keys: cover_letter, connect_note, post_connect.</code></pre>
+    </div>
+  </details>
+
+  <p class="impl-foot">
+    These are templates – the prompts and node sequences I run with. API keys, ICP definitions and customer data live in private repos. Real n8n JSON exports available on request.
+  </p>
 </section>
 
 <!-- closing -->
