@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Workflows – AI-native automations for B2B sales</title>
+<meta name="description" content="Five sales workflows wired together with Apollo, Instantly, HubSpot, Claude and n8n. Outbound machines, inbound triage, renewal radar, half-yearly review prep, crisis routing." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #FAF8F1; --bone-2: #F2EFE3;
+    --ink: #0E0D14; --ink-2: #2A2735; --ink-3: #5C5868;
+    --rule: #1f1c2a14; --rule-strong: #1f1c2a26;
+    --violet: #4F32D8; --violet-ink: #2d1a93; --lime: #D4FF3D;
+    --gold: #f5c674;
+    --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --maxw: 1080px;
+    --pad: clamp(20px, 4vw, 56px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bone); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  a { color: var(--violet); text-decoration: none; text-underline-offset: 3px; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: var(--lime); color: var(--ink); }
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  /* Nav */
+  .nav { border-bottom: 1px solid var(--rule); background: var(--bone); position: sticky; top: 0; z-index: 50; }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto; padding: 16px var(--pad);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink); letter-spacing: -.01em; }
+  .wordmark .dot { color: var(--violet); }
+  .nav-back { font-family: var(--mono); font-size: 13px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; border-bottom: 0; }
+  .nav-back:hover { color: var(--violet); text-decoration: none; }
+
+  /* Hero */
+  .hero {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(3rem, 6vw, 5rem) var(--pad) clamp(2rem, 4vw, 3rem);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 1.4rem;
+    display: inline-block;
+  }
+  .hero-eyebrow::before {
+    content: ""; display: inline-block; width: 18px; height: 1px;
+    background: var(--ink-3); vertical-align: middle; margin-right: 10px; transform: translateY(-2px);
+  }
+  h1.hero-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(3rem, 8vw, 5.4rem); line-height: 0.98;
+    letter-spacing: -.02em; margin: 0 0 1.2rem;
+  }
+  h1.hero-title .italic { font-style: italic; }
+  h1.hero-title .acc { color: var(--violet); }
+  .hero-lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-2); max-width: 64ch; line-height: 1.55; margin: 0 0 1.4rem;
+  }
+  .hero-meta {
+    padding-top: 1.4rem; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11.5px;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2);
+    display: flex; flex-wrap: wrap; gap: 8px 28px;
+  }
+  .hero-meta span:not(:first-child)::before {
+    content: ""; display: inline-block; width: 5px; height: 5px;
+    background: var(--violet); border-radius: 1px;
+    transform: rotate(45deg); margin-right: 14px; vertical-align: 1px;
+  }
+  .hero-note {
+    margin-top: 1.4rem;
+    padding: 12px 16px;
+    background: var(--bone-2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    max-width: 64ch;
+  }
+  .hero-note strong { color: var(--ink); font-weight: 600; }
+
+  /* TOC card */
+  .toc-card {
+    max-width: var(--maxw); margin: 0 auto;
+    border-top: 1px solid var(--rule);
+  }
+  .toc-inner {
+    padding: clamp(1.6rem, 3vw, 2.4rem) var(--pad);
+    display: grid; grid-template-columns: 200px 1fr; gap: 30px;
+  }
+  @media (max-width: 760px) { .toc-inner { grid-template-columns: 1fr; gap: 14px; } }
+  .toc-label {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-3); margin: 0;
+  }
+  .toc-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+  }
+  @media (max-width: 600px) { .toc-list { grid-template-columns: 1fr; } }
+  .toc-list a { color: var(--ink); border-bottom: 1px dashed transparent; font-size: 14.5px; }
+  .toc-list a:hover { color: var(--violet); border-bottom-color: var(--violet); text-decoration: none; }
+  .toc-list .toc-num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-right: 8px; }
+
+  /* Workflow sections */
+  .wf {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(2.5rem, 5vw, 4rem) var(--pad);
+    border-top: 1px solid var(--rule);
+  }
+  .wf-kicker {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--violet); margin: 0 0 14px;
+    display: inline-block;
+  }
+  .wf-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05;
+    letter-spacing: -.015em; margin: 0 0 14px;
+  }
+  .wf-title .italic { font-style: italic; color: var(--violet); }
+  .wf-tagline {
+    color: var(--ink-2); font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.55; margin: 0 0 1.8rem; max-width: 64ch;
+  }
+  .wf-stack {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 1.8rem;
+    font-family: var(--mono);
+  }
+  .wf-stack span {
+    display: inline-flex; align-items: center;
+    padding: 4px 10px 5px;
+    font-size: 11px; letter-spacing: .04em;
+    background: var(--bone-2);
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    color: var(--ink-2);
+  }
+  .wf-stack span.tool-claude { background: rgba(212,165,116,0.18); border-color: var(--gold); color: var(--ink); }
+  .wf-stack span.tool-violet { background: rgba(79,50,216,0.10); border-color: var(--violet); color: var(--violet-ink); }
+  .wf-stack span.tool-lime   { background: rgba(212,255,61,0.30); border-color: var(--ink); color: var(--ink); }
+
+  /* Flow diagram */
+  .wf-flow {
+    background: var(--bone-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: clamp(20px, 4vw, 32px);
+    position: relative;
+    overflow: hidden;
+  }
+  .wf-flow::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(14,13,20,0.06) 1.2px, transparent 1.4px);
+    background-size: 14px 14px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .wf-chain {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 22px;
+  }
+  .wf-node {
+    background: var(--bone);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 14px 18px;
+    position: relative;
+    box-shadow: 3px 3px 0 0 var(--ink);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .wf-node:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 0 var(--violet); }
+  .wf-node-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 4px; flex-wrap: wrap;
+  }
+  .wf-node-title {
+    font-family: var(--sans); font-weight: 600; font-size: 15.5px;
+    color: var(--ink); letter-spacing: -.005em;
+  }
+  .wf-node-tool {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .08em; color: var(--violet-ink);
+    text-transform: uppercase;
+    background: rgba(79,50,216,0.08);
+    padding: 2px 8px; border-radius: 999px;
+    border: 1px solid rgba(79,50,216,0.25);
+  }
+  .wf-node-desc {
+    font-size: 13.5px; color: var(--ink-2); line-height: 1.5;
+    margin: 0;
+  }
+  /* Triggers / outputs special styling */
+  .wf-node.trigger {
+    background: var(--ink); color: var(--bone);
+    border-color: var(--ink); box-shadow: 3px 3px 0 0 var(--violet);
+  }
+  .wf-node.trigger .wf-node-title { color: var(--bone); }
+  .wf-node.trigger .wf-node-desc { color: rgba(250,248,241,0.78); }
+  .wf-node.trigger .wf-node-tool { color: var(--lime); background: rgba(212,255,61,0.15); border-color: rgba(212,255,61,0.4); }
+
+  .wf-node.output {
+    background: var(--lime); border-color: var(--ink);
+    box-shadow: 4px 4px 0 0 var(--ink);
+  }
+  .wf-node.output .wf-node-title { color: var(--ink); }
+  .wf-node.output .wf-node-tool { background: var(--ink); color: var(--lime); border-color: var(--ink); }
+
+  /* Connector arrows */
+  .wf-arrow {
+    position: relative; height: 18px;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .wf-arrow::before {
+    content: ""; position: absolute; top: 0; bottom: 0;
+    width: 1.5px; background: var(--ink);
+  }
+  .wf-arrow::after {
+    content: "▼";
+    position: absolute; bottom: -2px;
+    color: var(--ink); font-size: 11px;
+    background: var(--bone-2); padding: 0 2px;
+  }
+
+  /* Branching */
+  .wf-branch {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    position: relative;
+  }
+  @media (max-width: 600px) { .wf-branch { grid-template-columns: 1fr; } }
+  .wf-branch::before {
+    content: ""; position: absolute;
+    top: -22px; left: 25%; right: 25%; height: 1.5px;
+    background: var(--ink);
+  }
+  .wf-branch-label {
+    position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+    background: var(--bone-2);
+    padding: 0 8px;
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--violet-ink); letter-spacing: .04em;
+    z-index: 2; white-space: nowrap;
+  }
+  .wf-branch > div { position: relative; }
+  .wf-branch > div::before {
+    content: ""; position: absolute;
+    top: -22px; left: 50%; width: 1.5px; height: 22px;
+    background: var(--ink);
+  }
+
+  /* Outcomes / "what this saves" card */
+  .wf-outcome {
+    margin-top: clamp(1.6rem, 3vw, 2.2rem);
+    padding: 16px 18px;
+    background: rgba(212,255,61,0.18);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 4px 4px 0 0 var(--ink);
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 14px 18px;
+    align-items: center;
+  }
+  @media (max-width: 540px) { .wf-outcome { grid-template-columns: 1fr; gap: 8px; } }
+  .wf-outcome-label {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+  }
+  .wf-outcome p {
+    margin: 0; font-size: 14.5px; line-height: 1.5;
+    color: var(--ink);
+  }
+  .wf-outcome strong { font-weight: 600; }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--rule); background: var(--bone);
+    padding: clamp(2rem, 4vw, 3rem) var(--pad); margin-top: 2rem;
+  }
+  .footer-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--ink-3); letter-spacing: .04em;
+  }
+  .footer-cta {
+    font-family: var(--mono); font-size: 12px;
+    background: var(--ink); color: var(--bone);
+    padding: 8px 14px 9px; border-radius: 999px;
+    border-bottom: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background .2s, transform .2s;
+  }
+  .footer-cta:hover { background: var(--violet); text-decoration: none; transform: translateY(-1px); }
+
+  @media (max-width: 600px) {
+    h1.hero-title { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+    .hero { padding: 2.4rem var(--pad) 1.6rem; }
+    .wf { padding: 2rem var(--pad); }
+    .wf-flow { padding: 16px; }
+    .wf-node { padding: 12px 14px; }
+    .wf-node-title { font-size: 14.5px; }
+    .wf-node-desc { font-size: 12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="index.html">Onur Berrak<span class="dot">.</span></a>
+    <a class="nav-back" href="index.html">← back to portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="hero-eyebrow">// workflows · automations · wired together</p>
+  <h1 class="hero-title">How the agent <span class="italic acc">actually works.</span></h1>
+  <p class="hero-lede">
+    Five sales workflows I've built out of Apollo, Instantly, HubSpot, Claude and n8n – the wiring that turns "I'll get to it" into "it ran while I was asleep." Each one is a real motion: outbound prospecting, inbound triage, renewal radar, half-yearly review prep, and crisis routing.
+  </p>
+  <div class="hero-meta">
+    <span>n8n · Claude API · HubSpot · Apollo.io · Instantly.ai · Gojiberry.ai · Slack</span>
+    <span>Sales OS in motion</span>
+  </div>
+  <p class="hero-note">
+    <strong>Note:</strong> Diagrams below show the shape of each automation – the patterns I run with. Implementation details (API keys, ICP rules, scoring prompts, customer data) live in private repos. Happy to walk through any of them in a call.
+  </p>
+</header>
+
+<section class="toc-card">
+  <div class="toc-inner">
+    <p class="toc-label">// contents</p>
+    <ul class="toc-list">
+      <li><a href="#outbound"><span class="toc-num">01</span>Outbound machine</a></li>
+      <li><a href="#inbound"><span class="toc-num">02</span>Inbound lead triage</a></li>
+      <li><a href="#review"><span class="toc-num">03</span>Half-yearly review prep</a></li>
+      <li><a href="#renewal"><span class="toc-num">04</span>Renewal radar</a></li>
+      <li><a href="#crisis"><span class="toc-num">05</span>Crisis escalation routing</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 01 OUTBOUND ============ -->
+<section class="wf" id="outbound">
+  <p class="wf-kicker">// 01 – outbound machine</p>
+  <h2 class="wf-title">From ICP filter to booked call, <span class="italic">on autopilot.</span></h2>
+  <p class="wf-tagline">
+    Apollo finds the people, Claude scores them, Instantly runs the sequence, HubSpot tracks the deal. The SDR motion without the SDR.
+  </p>
+  <div class="wf-stack">
+    <span class="tool-violet">Apollo.io</span>
+    <span class="tool-claude">Claude</span>
+    <span>Instantly.ai</span>
+    <span>HubSpot</span>
+    <span class="tool-lime">n8n</span>
+    <span>Slack</span>
+  </div>
+
+  <div class="wf-flow">
+    <div class="wf-chain">
+
+      <div class="wf-node trigger">
+        <div class="wf-node-head"><span class="wf-node-title">ICP search saved in Apollo</span><span class="wf-node-tool">trigger</span></div>
+        <p class="wf-node-desc">Daily cron pulls new contacts matching the ideal customer profile – title, company size, region, hiring signals.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Enrich + dedupe</span><span class="wf-node-tool">Apollo · n8n</span></div>
+        <p class="wf-node-desc">Pull full profile: role, tenure, recent activity, mutual connections. Drop anyone already in HubSpot as an active deal or opt-out.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">AI fit + intent scoring</span><span class="wf-node-tool">Claude</span></div>
+        <p class="wf-node-desc">Prompt evaluates: <em>does this lead look like our best customers?</em> Returns a 1–10 score with a one-line "why" used downstream.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-branch">
+        <span class="wf-branch-label">score ≥ 7 ? branch</span>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">High-fit → personalised sequence</span><span class="wf-node-tool">Claude → Instantly</span></div>
+            <p class="wf-node-desc">Claude drafts a personalised first e-mail using the enrichment + score-reason. Instantly fires the 4-touch sequence at regional cadence.</p>
+          </div>
+        </div>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">Low-fit → nurture or archive</span><span class="wf-node-tool">HubSpot</span></div>
+            <p class="wf-node-desc">Drops into a long-cadence nurture list, or auto-archives with a "revisit in Q+2" reminder. No human attention burned.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Reply detected</span><span class="wf-node-tool">Instantly → n8n</span></div>
+        <p class="wf-node-desc">Webhook fires on any inbound reply. Claude classifies it: interested, not now, wrong person, unsubscribe.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node output">
+        <div class="wf-node-head"><span class="wf-node-title">Hot lead → KAM assigned</span><span class="wf-node-tool">HubSpot · Slack</span></div>
+        <p class="wf-node-desc">Interested replies create a HubSpot deal, assign a KAM, ping Slack with the original reply and a one-line context summary.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>Replaces the SDR-tier of an outbound team. <strong>Sales reps wake up to a Slack list of warm replies</strong> with full context attached – not a queue of cold names to call.</p>
+  </div>
+</section>
+
+<!-- ============ 02 INBOUND ============ -->
+<section class="wf" id="inbound">
+  <p class="wf-kicker">// 02 – inbound lead triage</p>
+  <h2 class="wf-title">When the form fires, <span class="italic">someone's already on it.</span></h2>
+  <p class="wf-tagline">
+    Website contact form → enriched, scored, routed in under 60 seconds. The rep gets a fully briefed lead, not a name and an email.
+  </p>
+  <div class="wf-stack">
+    <span class="tool-violet">Webhook</span>
+    <span>Apollo.io</span>
+    <span class="tool-claude">Claude</span>
+    <span>HubSpot</span>
+    <span>Slack</span>
+    <span class="tool-lime">n8n</span>
+  </div>
+
+  <div class="wf-flow">
+    <div class="wf-chain">
+
+      <div class="wf-node trigger">
+        <div class="wf-node-head"><span class="wf-node-title">Contact form submission</span><span class="wf-node-tool">trigger</span></div>
+        <p class="wf-node-desc">Anyone hits "Get in touch" on the marketing site, n8n catches the webhook within seconds.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Enrich on the fly</span><span class="wf-node-tool">Apollo</span></div>
+        <p class="wf-node-desc">Pull title, seniority, company size, region, tech stack signals – everything the rep would manually google.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">AI qualification + brief</span><span class="wf-node-tool">Claude</span></div>
+        <p class="wf-node-desc">Reads the form's free-text message + enrichment, returns: lead score (1–10), three discovery questions tailored to them, two hypotheses about their problem.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-branch">
+        <span class="wf-branch-label">priority routing</span>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">Hot (≥ 8) → KAM Slack ping</span><span class="wf-node-tool">Slack</span></div>
+            <p class="wf-node-desc">DM to the on-duty KAM with the brief, the form text, the Apollo profile and the three suggested questions. Response target: 1 hour.</p>
+          </div>
+        </div>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">Warm (4–7) → nurture drip</span><span class="wf-node-tool">HubSpot</span></div>
+            <p class="wf-node-desc">Adds to the "engaged but not ready" sequence. KAM reviews weekly digest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node output">
+        <div class="wf-node-head"><span class="wf-node-title">HubSpot deal + activity log</span><span class="wf-node-tool">HubSpot</span></div>
+        <p class="wf-node-desc">Every lead lands as a structured record: form text, AI brief, score, routing decision. Pipeline stays clean, no orphan e-mails.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>Inbound goes from "queue someone will check tomorrow" to <strong>briefed, routed and acted on in under an hour</strong>. The KAM walks into the call already knowing the customer.</p>
+  </div>
+</section>
+
+<!-- ============ 03 REVIEW PREP ============ -->
+<section class="wf" id="review">
+  <p class="wf-kicker">// 03 – half-yearly review prep</p>
+  <h2 class="wf-title">The brief writes itself, <span class="italic">7 days before the meeting.</span></h2>
+  <p class="wf-tagline">
+    Every key account gets a strategic review every six months. The prep work – pulling data, drafting the agenda – is the part that used to eat the morning. Now it lands automatically.
+  </p>
+  <div class="wf-stack">
+    <span class="tool-violet">Calendar trigger</span>
+    <span>HubSpot</span>
+    <span>Gmail / Outlook</span>
+    <span class="tool-claude">Claude</span>
+    <span>Notion</span>
+    <span>Slack</span>
+  </div>
+
+  <div class="wf-flow">
+    <div class="wf-chain">
+
+      <div class="wf-node trigger">
+        <div class="wf-node-head"><span class="wf-node-title">Review meeting in calendar · T-7 days</span><span class="wf-node-tool">trigger</span></div>
+        <p class="wf-node-desc">Cron finds upcoming review meetings tagged in the calendar, fires the prep workflow seven days out.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Pull 6-month account history</span><span class="wf-node-tool">HubSpot · n8n</span></div>
+        <p class="wf-node-desc">Revenue last 6 months vs. prior 6, every closed deal, every escalation, every open ticket, every product expansion conversation logged.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Pull e-mail thread digest</span><span class="wf-node-tool">Gmail / Outlook</span></div>
+        <p class="wf-node-desc">Last 6 months of e-mail history with the account – timestamps, sentiment markers, unresolved items, open commitments on both sides.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Generate one-page snapshot</span><span class="wf-node-tool">Claude</span></div>
+        <p class="wf-node-desc">Claude assembles a structured page: revenue health · growth conversations · what they need from us · what's new on our side · three talk-tracks ordered by importance.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node output">
+        <div class="wf-node-head"><span class="wf-node-title">Drop in Notion + Slack reminder</span><span class="wf-node-tool">Notion · Slack</span></div>
+        <p class="wf-node-desc">Snapshot lands in the account's Notion page, KAM gets a Slack DM with the link and a 60-second summary. Review prep done before the kettle boils.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>The cadence I built across my book turns from "find half a day to prep" into <strong>a pre-filled brief waiting in Notion</strong>. KAM shows up to the meeting having already digested six months of context.</p>
+  </div>
+</section>
+
+<!-- ============ 04 RENEWAL RADAR ============ -->
+<section class="wf" id="renewal">
+  <p class="wf-kicker">// 04 – renewal radar</p>
+  <h2 class="wf-title">Renewals surfaced <span class="italic">six months early.</span></h2>
+  <p class="wf-tagline">
+    Surprises at renewal mean someone wasn't paying attention. This loop watches the contract calendar so the KAM doesn't have to.
+  </p>
+  <div class="wf-stack">
+    <span class="tool-violet">Daily cron</span>
+    <span>HubSpot</span>
+    <span class="tool-claude">Claude</span>
+    <span>Calendar</span>
+    <span>Slack</span>
+  </div>
+
+  <div class="wf-flow">
+    <div class="wf-chain">
+
+      <div class="wf-node trigger">
+        <div class="wf-node-head"><span class="wf-node-title">Daily 06:00 scan of contracts</span><span class="wf-node-tool">trigger</span></div>
+        <p class="wf-node-desc">n8n runs every morning, queries HubSpot for contracts expiring in T-180, T-120 and T-60 days.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">Pull engagement signals</span><span class="wf-node-tool">HubSpot</span></div>
+        <p class="wf-node-desc">For each account in the window: last 90 days of e-mail activity, support tickets, NPS movement, recent escalations, expansion conversations.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">AI risk-score</span><span class="wf-node-tool">Claude</span></div>
+        <p class="wf-node-desc">Returns: at-risk / on-track / expansion-opportunity, with a one-paragraph "why" the KAM should care.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-branch">
+        <span class="wf-branch-label">routing by risk</span>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">At-risk → Slack alert + action</span><span class="wf-node-tool">Slack</span></div>
+            <p class="wf-node-desc">Posts to the KAM channel with the account, the risk reason, a suggested intervention, and a calendar event for a recovery conversation.</p>
+          </div>
+        </div>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">On-track → renewal motion queued</span><span class="wf-node-tool">Calendar · HubSpot</span></div>
+            <p class="wf-node-desc">Pre-books the renewal conversation, drafts the renewal e-mail, opens a deal in HubSpot. KAM reviews and ships.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node output">
+        <div class="wf-node-head"><span class="wf-node-title">No renewal walks in cold</span><span class="wf-node-tool">outcome</span></div>
+        <p class="wf-node-desc">Every contract has a status six months out. Nothing surprises the team in renewal month, because everything was surfaced when it could still be moved.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>Turns "we lost X at renewal" into <strong>"we saw X drifting in Q-2 and pulled it back."</strong> The renewal calendar runs the rep, instead of the other way around.</p>
+  </div>
+</section>
+
+<!-- ============ 05 CRISIS ============ -->
+<section class="wf" id="crisis">
+  <p class="wf-kicker">// 05 – crisis escalation routing</p>
+  <h2 class="wf-title">Bad news caught <span class="italic">before it festers.</span></h2>
+  <p class="wf-tagline">
+    Negative-sentiment e-mail lands. Within minutes it's classified, routed to the right team, and a draft acknowledgement is ready for the KAM to send. No e-mails buried under "I'll get back to you."
+  </p>
+  <div class="wf-stack">
+    <span class="tool-violet">Inbox watcher</span>
+    <span class="tool-claude">Claude</span>
+    <span>Slack</span>
+    <span>HubSpot</span>
+  </div>
+
+  <div class="wf-flow">
+    <div class="wf-chain">
+
+      <div class="wf-node trigger">
+        <div class="wf-node-head"><span class="wf-node-title">Customer e-mail with negative sentiment</span><span class="wf-node-tool">trigger</span></div>
+        <p class="wf-node-desc">Inbox watcher flags messages with words like "delay", "complaint", "missing", "unacceptable", or AI-detected negative tone.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node">
+        <div class="wf-node-head"><span class="wf-node-title">AI triage</span><span class="wf-node-tool">Claude</span></div>
+        <p class="wf-node-desc">Classifies the issue: <strong>operations / billing / product / SLA</strong>. Severity 1–3. Identifies what the customer expected vs. what happened.</p>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-branch">
+        <span class="wf-branch-label">route + draft</span>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">Slack channel routing</span><span class="wf-node-tool">Slack</span></div>
+            <p class="wf-node-desc">Posts to the right internal channel – ops, billing, product. KAM is always tagged so they own the customer-facing thread.</p>
+          </div>
+        </div>
+        <div>
+          <div class="wf-node">
+            <div class="wf-node-head"><span class="wf-node-title">Acknowledgement draft</span><span class="wf-node-tool">Claude</span></div>
+            <p class="wf-node-desc">Drafts a 24h-playbook-compliant reply: acknowledge, name the expectation + damage, hold off on root cause. KAM reviews and ships.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-arrow" aria-hidden="true"></div>
+
+      <div class="wf-node output">
+        <div class="wf-node-head"><span class="wf-node-title">Customer hears back within 1 hour</span><span class="wf-node-tool">outcome</span></div>
+        <p class="wf-node-desc">No e-mail goes unanswered for more than an hour. The KAM never has to draft from a blank page in crisis mode.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>The Sales OS §07 crisis playbook, automated. <strong>"Be early on bad news" stops being a rule and starts being the default behaviour</strong> of the inbox.</p>
+  </div>
+</section>
+
+<!-- ============ closing ============ -->
+<section class="wf" style="text-align: center;">
+  <p class="wf-kicker">// the point</p>
+  <h2 class="wf-title">Boring on the surface, <span class="italic">obsessive underneath.</span></h2>
+  <p class="wf-tagline" style="margin-left: auto; margin-right: auto;">
+    None of this is theatre. Each loop replaces something a sales rep used to do badly because they were tired – cold prospecting at 5pm, prep work skipped before a review, a sentiment-flag e-mail that sat in the inbox till Monday. Boring problems, real automations, measurable outcomes.
+  </p>
+  <p style="margin-top: 1.4rem;">
+    <a href="sales-os.html" class="footer-cta" style="display:inline-flex;">Read the full Sales OS playbook →</a>
+  </p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Onur Berrak · Berlin · Built in Claude Code</span>
+    <a class="footer-cta" href="index.html">← back to portfolio</a>
+  </div>
+</footer>
+
+</body>
+</html>
