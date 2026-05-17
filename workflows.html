@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Workflows – AI-native automations for B2B sales</title>
-<meta name="description" content="Five sales workflows wired together with Apollo, Instantly, HubSpot, Claude and n8n. Outbound machines, inbound triage, renewal radar, half-yearly review prep, crisis routing." />
+<meta name="description" content="Five sales workflows wired together with Apollo, Instantly, HubSpot, Claude and n8n." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -18,7 +18,7 @@
     --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
     --sans: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    --maxw: 1180px;
+    --maxw: 1080px;
     --pad: clamp(20px, 4vw, 56px);
   }
   *, *::before, *::after { box-sizing: border-box; }
@@ -61,13 +61,13 @@
   }
   h1.hero-title {
     font-family: var(--serif); font-weight: 400;
-    font-size: clamp(3rem, 8vw, 5.4rem); line-height: 0.98;
+    font-size: clamp(2.6rem, 7vw, 4.8rem); line-height: 0.98;
     letter-spacing: -.02em; margin: 0 0 1.2rem;
   }
   h1.hero-title .italic { font-style: italic; }
   h1.hero-title .acc { color: var(--violet); }
   .hero-lede {
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
     color: var(--ink-2); max-width: 64ch; line-height: 1.55; margin: 0 0 1.4rem;
   }
   .hero-meta {
@@ -86,23 +86,17 @@
     background: var(--bone-2);
     border-left: 3px solid var(--gold);
     border-radius: 0 4px 4px 0;
-    font-family: var(--mono); font-size: 12px;
+    font-family: var(--mono); font-size: 11.5px;
     color: var(--ink-2); line-height: 1.5; max-width: 64ch;
   }
   .hero-note strong { color: var(--ink); font-weight: 600; }
 
-  /* TOC card */
+  /* TOC */
   .toc-card { max-width: var(--maxw); margin: 0 auto; border-top: 1px solid var(--rule); }
-  .toc-inner {
-    padding: clamp(1.6rem, 3vw, 2.4rem) var(--pad);
-    display: grid; grid-template-columns: 200px 1fr; gap: 30px;
-  }
+  .toc-inner { padding: clamp(1.6rem, 3vw, 2.4rem) var(--pad); display: grid; grid-template-columns: 200px 1fr; gap: 30px; }
   @media (max-width: 760px) { .toc-inner { grid-template-columns: 1fr; gap: 14px; } }
   .toc-label { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
-  .toc-list {
-    list-style: none; padding: 0; margin: 0;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
-  }
+  .toc-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
   @media (max-width: 600px) { .toc-list { grid-template-columns: 1fr; } }
   .toc-list a { color: var(--ink); border-bottom: 1px dashed transparent; font-size: 14.5px; }
   .toc-list a:hover { color: var(--violet); border-bottom-color: var(--violet); text-decoration: none; }
@@ -117,24 +111,16 @@
   .wf-kicker {
     font-family: var(--mono); font-size: 11px;
     letter-spacing: .14em; text-transform: uppercase;
-    color: var(--violet); margin: 0 0 14px;
-    display: inline-block;
+    color: var(--violet); margin: 0 0 14px; display: inline-block;
   }
   .wf-title {
     font-family: var(--serif); font-weight: 400;
-    font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05;
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height: 1.05;
     letter-spacing: -.015em; margin: 0 0 14px;
   }
   .wf-title .italic { font-style: italic; color: var(--violet); }
-  .wf-tagline {
-    color: var(--ink-2); font-size: clamp(1rem, 1.4vw, 1.1rem);
-    line-height: 1.55; margin: 0 0 1.4rem; max-width: 64ch;
-  }
-  .wf-stack {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin-bottom: 1.4rem;
-    font-family: var(--mono);
-  }
+  .wf-tagline { color: var(--ink-2); font-size: clamp(0.98rem, 1.3vw, 1.08rem); line-height: 1.55; margin: 0 0 1.2rem; max-width: 64ch; }
+  .wf-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.4rem; font-family: var(--mono); }
   .wf-stack span {
     display: inline-flex; align-items: center;
     padding: 4px 10px 5px;
@@ -149,9 +135,10 @@
   .wf-stack span.t-lime   { background: rgba(212,255,61,0.30); border-color: var(--ink); color: var(--ink); }
   .wf-stack span.t-ink    { background: var(--ink); border-color: var(--ink); color: var(--bone); }
 
-  /* ---------- SVG CANVAS ---------- */
+  /* ---------- CANVAS — fixed width, no scroll ---------- */
   .canvas-wrap {
-    margin: 0 0 1.4rem;
+    margin: 0 auto 1.4rem;
+    max-width: 760px;
     background:
       radial-gradient(circle, rgba(14,13,20,0.12) 1.2px, transparent 1.5px);
     background-size: 16px 16px;
@@ -159,15 +146,12 @@
     border: 1.5px solid var(--ink);
     border-radius: 8px;
     box-shadow: 6px 6px 0 0 var(--violet);
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    padding: 24px 22px;
   }
   .canvas {
     position: relative;
-    width: 1180px;
-    height: 260px;
-    margin: 0 auto;
+    width: 100%;
+    height: 240px;
   }
   .canvas svg {
     position: absolute; inset: 0;
@@ -175,84 +159,83 @@
     pointer-events: none;
     z-index: 1;
   }
-  .canvas svg path,
-  .canvas svg line {
-    stroke: var(--ink);
-    stroke-width: 1.6;
-    fill: none;
+  .canvas svg line, .canvas svg path {
+    stroke: var(--ink); stroke-width: 1.6; fill: none;
   }
-  .canvas svg .arr-violet { stroke: var(--violet); }
-  .canvas svg .arr-dash { stroke-dasharray: 6 4; stroke: var(--ink-2); }
+  .canvas svg .arr-dash { stroke-dasharray: 5 4; stroke: var(--violet-ink); }
 
   .node {
     position: absolute;
-    width: 180px;
     background: var(--bone);
     border: 1.5px solid var(--ink);
     border-radius: 6px;
-    padding: 10px 12px 12px;
+    padding: 9px 11px 11px;
     box-shadow: 3px 3px 0 0 var(--ink);
     z-index: 2;
     transition: transform .2s, box-shadow .2s;
   }
-  .node:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 0 var(--violet);
-  }
-  .node-head {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; margin-bottom: 3px;
-  }
-  .node-name {
-    font-family: var(--sans); font-weight: 600; font-size: 13px;
-    color: var(--ink); letter-spacing: -.005em; line-height: 1.2;
-  }
-  .node-tool {
-    font-family: var(--mono); font-size: 9px;
-    letter-spacing: .08em; text-transform: uppercase;
-    color: var(--violet-ink);
-    background: rgba(79,50,216,0.10);
-    padding: 2px 6px; border-radius: 999px;
-    border: 1px solid rgba(79,50,216,0.25);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .node-sub {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--ink-3); letter-spacing: .02em;
-    line-height: 1.4;
-    margin: 0;
-  }
+  .node:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 0 var(--violet); }
+  .node-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px; }
+  .node-name { font-family: var(--sans); font-weight: 600; font-size: 12.5px; color: var(--ink); letter-spacing: -.005em; line-height: 1.2; }
+  .node-tool { font-family: var(--mono); font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--violet-ink); background: rgba(79,50,216,0.10); padding: 2px 5px; border-radius: 999px; border: 1px solid rgba(79,50,216,0.25); white-space: nowrap; flex-shrink: 0; }
+  .node-sub { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); letter-spacing: .02em; line-height: 1.35; margin: 0; }
 
   .node.trigger { background: var(--ink); border-color: var(--ink); box-shadow: 3px 3px 0 0 var(--violet); }
   .node.trigger .node-name { color: var(--bone); }
   .node.trigger .node-tool { background: rgba(212,255,61,0.15); color: var(--lime); border-color: rgba(212,255,61,0.35); }
   .node.trigger .node-sub { color: rgba(250,248,241,0.7); }
-
   .node.output { background: var(--lime); border-color: var(--ink); box-shadow: 4px 4px 0 0 var(--ink); }
   .node.output .node-name { color: var(--ink); }
   .node.output .node-tool { background: var(--ink); color: var(--lime); border-color: var(--ink); }
-
   .node.ai .node-tool { background: rgba(245,198,116,0.30); color: var(--ink); border-color: var(--gold); }
 
-  /* Branch label on path */
   .canvas-label {
-    position: absolute;
-    z-index: 3;
-    font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: .04em;
-    color: var(--violet-ink);
+    position: absolute; z-index: 3;
+    font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: .04em; color: var(--violet-ink);
     background: var(--bone-2);
-    padding: 1px 6px;
-    border-radius: 3px;
-    pointer-events: none;
-    white-space: nowrap;
+    padding: 1px 6px; border-radius: 3px;
+    pointer-events: none; white-space: nowrap;
   }
 
-  /* Outcome card */
+  /* ---- MOBILE: SVG hidden, nodes flow as a vertical stack ---- */
+  @media (max-width: 720px) {
+    .canvas-wrap { padding: 18px 14px; box-shadow: 4px 4px 0 0 var(--violet); }
+    .canvas {
+      height: auto;
+      display: flex; flex-direction: column;
+      gap: 22px;
+    }
+    .canvas svg { display: none !important; }
+    .canvas .node {
+      position: static !important;
+      width: 100% !important;
+      max-width: none;
+      left: auto !important; top: auto !important;
+      margin: 0 !important;
+    }
+    .canvas .node[data-branch="true"]::before {
+      content: "↳ branch";
+      display: block;
+      font-family: var(--mono); font-size: 9.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--violet-ink); margin-bottom: 6px;
+    }
+    .canvas .node:not(:last-child)::after {
+      content: "▼";
+      display: block; text-align: center;
+      font-size: 12px; color: var(--ink);
+      position: absolute;
+      bottom: -18px; left: 50%; transform: translateX(-50%);
+    }
+    .canvas .node { position: relative !important; }
+    .canvas-label { display: none; }
+  }
+
+  /* Outcome */
   .wf-outcome {
-    margin-top: clamp(1.4rem, 3vw, 2rem);
+    margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+    max-width: 760px;
     padding: 14px 18px;
     background: rgba(212,255,61,0.18);
     border: 1.5px solid var(--ink);
@@ -263,49 +246,21 @@
     gap: 14px 18px;
     align-items: center;
   }
-  @media (max-width: 540px) { .wf-outcome { grid-template-columns: 1fr; gap: 8px; } }
-  .wf-outcome-label {
-    font-family: var(--mono); font-size: 10.5px;
-    letter-spacing: .12em; text-transform: uppercase;
-    color: var(--ink-3); margin: 0;
-  }
-  .wf-outcome p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+  @media (max-width: 540px) { .wf-outcome { grid-template-columns: 1fr; gap: 6px; } }
+  .wf-outcome-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+  .wf-outcome p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink); }
   .wf-outcome strong { font-weight: 600; }
 
   /* Footer */
   .footer { border-top: 1px solid var(--rule); background: var(--bone); padding: clamp(2rem, 4vw, 3rem) var(--pad); margin-top: 2rem; }
-  .footer-inner {
-    max-width: 1180px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 20px; flex-wrap: wrap;
-    font-family: var(--mono); font-size: 12px;
-    color: var(--ink-3); letter-spacing: .04em;
-  }
-  .footer-cta {
-    font-family: var(--mono); font-size: 12px;
-    background: var(--ink); color: var(--bone);
-    padding: 8px 14px 9px; border-radius: 999px;
-    border-bottom: 0;
-    display: inline-flex; align-items: center; gap: 6px;
-    transition: background .2s, transform .2s;
-  }
+  .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+  .footer-cta { font-family: var(--mono); font-size: 12px; background: var(--ink); color: var(--bone); padding: 8px 14px 9px; border-radius: 999px; border-bottom: 0; display: inline-flex; align-items: center; gap: 6px; transition: background .2s, transform .2s; }
   .footer-cta:hover { background: var(--violet); text-decoration: none; transform: translateY(-1px); }
 
-  /* Scroll hint */
-  .scroll-hint {
-    font-family: var(--mono); font-size: 10.5px;
-    color: var(--ink-3); letter-spacing: .04em;
-    margin: 0 0 8px;
-    text-align: right;
-    padding-right: 4px;
-  }
-  @media (min-width: 1240px) { .scroll-hint { display: none; } }
-
   @media (max-width: 600px) {
-    h1.hero-title { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+    h1.hero-title { font-size: clamp(2.2rem, 10vw, 3.2rem); }
     .hero { padding: 2.4rem var(--pad) 1.6rem; }
     .wf { padding: 2rem var(--pad); }
-    .canvas-wrap { box-shadow: 4px 4px 0 0 var(--violet); }
   }
 </style>
 </head>
@@ -325,11 +280,11 @@
     Five sales workflows I've built out of Apollo, Instantly, HubSpot, Claude and n8n – the wiring that turns "I'll get to it" into "it ran while I was asleep." Each one is a real motion: outbound prospecting, inbound triage, renewal radar, half-yearly review prep, and crisis routing.
   </p>
   <div class="hero-meta">
-    <span>n8n · Claude API · HubSpot · Apollo.io · Instantly.ai · Gojiberry.ai · Slack</span>
+    <span>n8n · Claude · HubSpot · Apollo · Instantly · Gojiberry · Slack</span>
     <span>Sales OS in motion</span>
   </div>
   <p class="hero-note">
-    <strong>Note:</strong> Diagrams below show the shape of each automation – the patterns I run with. Implementation details (API keys, ICP rules, scoring prompts, customer data) live in private repos. Happy to walk through any of them in a call.
+    <strong>Note:</strong> Diagrams show the shape of each automation. Implementation details (API keys, scoring prompts, customer data) live in private repos. Happy to walk through any of them in a call.
   </p>
 </header>
 
@@ -347,384 +302,260 @@
 </section>
 
 <!-- ============================================================
-     01 OUTBOUND MACHINE
+     STANDARD LAYOUT: 4 main nodes (top row) + 1 branch (bottom).
+     Canvas: 720px × 240px viewBox. Node 150px wide × 64px tall.
+     Top row Y=20  ·  Branch Y=150
+     Node X positions: 0, 180, 360, 540 (gap 30)
 ============================================================ -->
+
+<!-- ============ 01 OUTBOUND ============ -->
 <section class="wf" id="outbound">
   <p class="wf-kicker">// 01 – outbound machine</p>
-  <h2 class="wf-title">From ICP filter to booked call, <span class="italic">on autopilot.</span></h2>
-  <p class="wf-tagline">Apollo finds the people, Claude scores them, Instantly runs the sequence, HubSpot tracks the deal. The SDR motion without the SDR.</p>
+  <h2 class="wf-title">From ICP to booked call, <span class="italic">on autopilot.</span></h2>
+  <p class="wf-tagline">Apollo finds the people, Claude scores them, Instantly runs the sequence, HubSpot tracks the deal.</p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span>
-    <span class="t-violet">Apollo.io</span>
-    <span class="t-gold">Claude</span>
-    <span>Instantly.ai</span>
-    <span>HubSpot</span>
-    <span class="t-lime">Slack</span>
+    <span class="t-ink">n8n</span><span class="t-violet">Apollo.io</span><span class="t-gold">Claude</span><span>Instantly.ai</span><span>HubSpot</span><span class="t-lime">Slack</span>
   </div>
-  <p class="scroll-hint">→ scroll horizontally to see the full flow</p>
 
   <div class="canvas-wrap">
     <div class="canvas">
-      <svg viewBox="0 0 1180 260" preserveAspectRatio="none">
-        <defs>
-          <marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/>
-          </marker>
-          <marker id="ah1v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/>
-          </marker>
-        </defs>
-        <!-- main row arrows -->
-        <line x1="190" y1="70"  x2="220" y2="70"  marker-end="url(#ah1)"/>
-        <line x1="400" y1="70"  x2="430" y2="70"  marker-end="url(#ah1)"/>
-        <line x1="610" y1="70"  x2="640" y2="70"  marker-end="url(#ah1)"/>
-        <line x1="820" y1="70"  x2="850" y2="70"  marker-end="url(#ah1)"/>
-        <line x1="1030" y1="70" x2="1060" y2="70" marker-end="url(#ah1)"/>
-        <!-- branch down: from Score (x=540, y=110) curve down to Archive (x=540, y=180) -->
-        <path d="M 540 110 C 540 130, 540 140, 540 160" class="arr-dash" marker-end="url(#ah1)"/>
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker><marker id="ah-av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/></marker></defs>
+        <!-- main row arrows (y=52) -->
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-a)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-a)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-a)"/>
+        <!-- branch down from Score (x=255, y=84) -->
+        <path d="M 255 84 C 255 110, 180 110, 75 150" class="arr-dash" marker-end="url(#ah-av)"/>
       </svg>
 
-      <!-- 6 nodes on main row, y=35, h=70 -->
-      <div class="node trigger" style="left:10px; top:35px;">
+      <div class="node trigger" style="left:0; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">Daily ICP scan</div><span class="node-tool">trigger</span></div>
-        <p class="node-sub">Apollo cron · matched lead list</p>
+        <p class="node-sub">Apollo cron · lead list</p>
       </div>
-      <div class="node" style="left:220px; top:35px;">
-        <div class="node-head"><div class="node-name">Enrich + dedupe</div><span class="node-tool">apollo</span></div>
-        <p class="node-sub">Full profile · skip active deals</p>
+      <div class="node ai" style="left:180px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Enrich + score</div><span class="node-tool">claude</span></div>
+        <p class="node-sub">1–10 fit + reason</p>
       </div>
-      <div class="node ai" style="left:430px; top:35px;">
-        <div class="node-head"><div class="node-name">AI fit-score</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">1–10 score + one-line "why"</p>
+      <div class="node" style="left:360px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">4-touch sequence</div><span class="node-tool">instantly</span></div>
+        <p class="node-sub">Regional cadence</p>
       </div>
-      <div class="node" style="left:640px; top:35px;">
-        <div class="node-head"><div class="node-name">Personalised sequence</div><span class="node-tool">instantly</span></div>
-        <p class="node-sub">4-touch · regional cadence</p>
+      <div class="node output" style="left:540px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Hot reply → KAM</div><span class="node-tool">slack</span></div>
+        <p class="node-sub">DM with context</p>
       </div>
-      <div class="node" style="left:850px; top:35px;">
-        <div class="node-head"><div class="node-name">Reply detected</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">Classify intent · interested?</p>
-      </div>
-      <div class="node output" style="left:1060px; top:35px; width:110px;">
-        <div class="node-head"><div class="node-name">KAM ping</div><span class="node-tool">slack</span></div>
-        <p class="node-sub">Hot lead in DM</p>
-      </div>
-      <!-- branch node below Score -->
-      <div class="node" style="left:450px; top:160px;">
+      <div class="node" data-branch="true" style="left:0; top:150px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">Low-fit → archive</div><span class="node-tool">hubspot</span></div>
-        <p class="node-sub">Or long-cadence nurture</p>
+        <p class="node-sub">Or nurture drip</p>
       </div>
-      <span class="canvas-label" style="left:548px; top:130px;">score &lt; 7</span>
+      <span class="canvas-label" style="left:170px; top:118px;">score &lt; 7</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>Replaces the SDR-tier of an outbound team. <strong>Sales reps wake up to a Slack list of warm replies</strong> with full context attached – not a queue of cold names to call.</p>
+    <p>Replaces the SDR-tier of an outbound team. <strong>Sales reps wake up to warm replies in Slack</strong> – not a queue of cold names to call.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     02 INBOUND TRIAGE
-============================================================ -->
+<!-- ============ 02 INBOUND ============ -->
 <section class="wf" id="inbound">
   <p class="wf-kicker">// 02 – inbound lead triage</p>
-  <h2 class="wf-title">When the form fires, <span class="italic">someone's already on it.</span></h2>
-  <p class="wf-tagline">Website contact form → enriched, scored, routed in under 60 seconds. The rep gets a fully briefed lead, not a name and an email.</p>
+  <h2 class="wf-title">Form fires, <span class="italic">someone's on it.</span></h2>
+  <p class="wf-tagline">Website form → enriched, scored, routed in under a minute. The rep gets a briefed lead, not a name and an email.</p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span>
-    <span class="t-violet">Webhook</span>
-    <span>Apollo.io</span>
-    <span class="t-gold">Claude</span>
-    <span>HubSpot</span>
-    <span class="t-lime">Slack</span>
+    <span class="t-ink">n8n</span><span class="t-violet">Webhook</span><span>Apollo</span><span class="t-gold">Claude</span><span>HubSpot</span><span class="t-lime">Slack</span>
   </div>
-  <p class="scroll-hint">→ scroll horizontally to see the full flow</p>
 
   <div class="canvas-wrap">
     <div class="canvas">
-      <svg viewBox="0 0 1180 260" preserveAspectRatio="none">
-        <defs>
-          <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/>
-          </marker>
-        </defs>
-        <line x1="190" y1="70" x2="220" y2="70" marker-end="url(#ah2)"/>
-        <line x1="400" y1="70" x2="430" y2="70" marker-end="url(#ah2)"/>
-        <line x1="610" y1="70" x2="640" y2="70" marker-end="url(#ah2)"/>
-        <!-- branch: from AI brief (540, 110) split into Hot (above) and Warm (below) -->
-        <!-- main path to KAM ping (Hot) -->
-        <path d="M 820 70 C 850 70, 880 70, 900 70" stroke-dasharray="0" marker-end="url(#ah2)"/>
-        <line x1="900" y1="70" x2="940" y2="70" marker-end="url(#ah2)"/>
-        <line x1="1060" y1="70" x2="1090" y2="70" marker-end="url(#ah2)"/>
-        <!-- branch down: warm nurture -->
-        <path d="M 730 110 C 730 130, 730 145, 730 160" class="arr-dash" marker-end="url(#ah2)"/>
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker><marker id="ah-bv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/></marker></defs>
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-b)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-b)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-b)"/>
+        <!-- branch from AI brief (x=435, y=84) to Warm nurture -->
+        <path d="M 435 84 C 435 110, 350 110, 255 150" class="arr-dash" marker-end="url(#ah-bv)"/>
       </svg>
 
-      <div class="node trigger" style="left:10px; top:35px;">
-        <div class="node-head"><div class="node-name">Form submission</div><span class="node-tool">trigger</span></div>
-        <p class="node-sub">Webhook from website</p>
+      <div class="node trigger" style="left:0; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Form submission</div><span class="node-tool">webhook</span></div>
+        <p class="node-sub">From website</p>
       </div>
-      <div class="node" style="left:220px; top:35px;">
+      <div class="node" style="left:180px; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">Enrich on the fly</div><span class="node-tool">apollo</span></div>
-        <p class="node-sub">Title · seniority · signals</p>
+        <p class="node-sub">Title · signals · stack</p>
       </div>
-      <div class="node ai" style="left:430px; top:35px;">
+      <div class="node ai" style="left:360px; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">AI brief + score</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">Score · 3 questions · 2 hypotheses</p>
+        <p class="node-sub">3 questions · 2 hypotheses</p>
       </div>
-      <div class="node" style="left:640px; top:35px;">
-        <div class="node-head"><div class="node-name">Hot routing</div><span class="node-tool">slack DM</span></div>
-        <p class="node-sub">≥ 8 score · KAM on duty</p>
+      <div class="node output" style="left:540px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Hot → KAM, &lt; 1h</div><span class="node-tool">slack</span></div>
+        <p class="node-sub">DM with the brief</p>
       </div>
-      <div class="node" style="left:850px; top:35px;">
-        <div class="node-head"><div class="node-name">Deal + activity log</div><span class="node-tool">hubspot</span></div>
-        <p class="node-sub">Brief · score · routing trail</p>
+      <div class="node" data-branch="true" style="left:180px; top:150px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Warm → nurture</div><span class="node-tool">hubspot</span></div>
+        <p class="node-sub">Score 4–7 · drip</p>
       </div>
-      <div class="node output" style="left:1060px; top:35px; width:110px;">
-        <div class="node-head"><div class="node-name">In rep's hands</div><span class="node-tool">→ 1h</span></div>
-        <p class="node-sub">Acts within the hour</p>
-      </div>
-      <!-- branch nurture -->
-      <div class="node" style="left:640px; top:160px;">
-        <div class="node-head"><div class="node-name">Warm → nurture drip</div><span class="node-tool">hubspot</span></div>
-        <p class="node-sub">4–7 score · long cadence</p>
-      </div>
-      <span class="canvas-label" style="left:738px; top:130px;">score 4–7</span>
+      <span class="canvas-label" style="left:350px; top:118px;">score 4–7</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>Inbound goes from "queue someone will check tomorrow" to <strong>briefed, routed and acted on in under an hour</strong>. The KAM walks into the call already knowing the customer.</p>
+    <p>Inbound goes from "queue someone will check tomorrow" to <strong>briefed, routed and acted on within an hour</strong>.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     03 REVIEW PREP
-============================================================ -->
+<!-- ============ 03 REVIEW PREP ============ -->
 <section class="wf" id="review">
   <p class="wf-kicker">// 03 – half-yearly review prep</p>
-  <h2 class="wf-title">The brief writes itself, <span class="italic">7 days before the meeting.</span></h2>
-  <p class="wf-tagline">Every key account gets a strategic review every six months. The prep work – pulling data, drafting the agenda – is the part that used to eat the morning. Now it lands automatically.</p>
+  <h2 class="wf-title">The brief writes itself, <span class="italic">7 days early.</span></h2>
+  <p class="wf-tagline">Every key account gets a strategic review every six months. The prep work – pulling data, drafting the agenda – lands automatically.</p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span>
-    <span class="t-violet">Calendar trigger</span>
-    <span>HubSpot</span>
-    <span>Gmail / Outlook</span>
-    <span class="t-gold">Claude</span>
-    <span>Notion</span>
-    <span class="t-lime">Slack</span>
+    <span class="t-ink">n8n</span><span class="t-violet">Calendar trigger</span><span>HubSpot</span><span>Gmail</span><span class="t-gold">Claude</span><span>Notion</span><span class="t-lime">Slack</span>
   </div>
-  <p class="scroll-hint">→ scroll horizontally to see the full flow</p>
 
   <div class="canvas-wrap">
     <div class="canvas">
-      <svg viewBox="0 0 1180 260" preserveAspectRatio="none">
-        <defs>
-          <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/>
-          </marker>
-        </defs>
-        <line x1="190" y1="70" x2="220" y2="70" marker-end="url(#ah3)"/>
-        <!-- branch out: HubSpot data (top) + e-mail digest (bottom) merge into Claude -->
-        <path d="M 400 70 C 420 70, 420 35, 440 35" marker-end="url(#ah3)"/>
-        <path d="M 400 70 C 420 70, 420 105, 440 105" marker-end="url(#ah3)"/>
-        <!-- merge into Claude (x=640, y=70): from top (620,35) and bottom (620,105) curve into (640,70) -->
-        <path d="M 620 35 C 640 35, 640 70, 640 70" marker-end="url(#ah3)"/>
-        <path d="M 620 105 C 640 105, 640 70, 640 70" marker-end="url(#ah3)"/>
-        <line x1="820" y1="70" x2="850" y2="70" marker-end="url(#ah3)"/>
-        <line x1="1030" y1="70" x2="1060" y2="70" marker-end="url(#ah3)"/>
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker></defs>
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-c)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-c)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-c)"/>
+        <!-- parallel pull (gmail) joins into Claude -->
+        <path d="M 255 84 C 255 120, 380 120, 435 84" marker-end="url(#ah-c)"/>
       </svg>
 
-      <div class="node trigger" style="left:10px; top:35px;">
+      <div class="node trigger" style="left:0; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">T-7 days · review</div><span class="node-tool">cron</span></div>
-        <p class="node-sub">Calendar event found</p>
+        <p class="node-sub">Calendar match</p>
       </div>
-      <div class="node" style="left:220px; top:35px;">
-        <div class="node-head"><div class="node-name">Dispatch fetch</div><span class="node-tool">n8n</span></div>
-        <p class="node-sub">Splits into two pulls</p>
+      <div class="node" style="left:180px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Pull HubSpot 6mo</div><span class="node-tool">hubspot</span></div>
+        <p class="node-sub">Revenue · tickets · deals</p>
       </div>
-      <!-- two parallel pulls -->
-      <div class="node" style="left:440px; top:5px; height:60px;">
-        <div class="node-head"><div class="node-name">6-month HubSpot data</div><span class="node-tool">hubspot</span></div>
-        <p class="node-sub">Deals · tickets · revenue</p>
-      </div>
-      <div class="node" style="left:440px; top:75px;">
-        <div class="node-head"><div class="node-name">E-mail thread digest</div><span class="node-tool">gmail api</span></div>
-        <p class="node-sub">Last 6mo · sentiment markers</p>
-      </div>
-      <!-- merge into Claude -->
-      <div class="node ai" style="left:640px; top:35px;">
+      <div class="node ai" style="left:360px; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">One-page snapshot</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">Health · growth · friction · what's new</p>
+        <p class="node-sub">Health · growth · what's new</p>
       </div>
-      <div class="node" style="left:850px; top:35px;">
-        <div class="node-head"><div class="node-name">Drop in account page</div><span class="node-tool">notion</span></div>
-        <p class="node-sub">Pre-filled review brief</p>
+      <div class="node output" style="left:540px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Notion + Slack</div><span class="node-tool">notify</span></div>
+        <p class="node-sub">KAM gets the link</p>
       </div>
-      <div class="node output" style="left:1060px; top:35px; width:110px;">
-        <div class="node-head"><div class="node-name">KAM ping</div><span class="node-tool">slack</span></div>
-        <p class="node-sub">DM + link</p>
+      <div class="node" data-branch="true" style="left:180px; top:150px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Pull e-mail digest</div><span class="node-tool">gmail api</span></div>
+        <p class="node-sub">Sentiment · open items</p>
       </div>
+      <span class="canvas-label" style="left:340px; top:118px;">parallel pull</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>The cadence I built across my book turns from "find half a day to prep" into <strong>a pre-filled brief waiting in Notion</strong>. KAM shows up to the meeting having already digested six months of context.</p>
+    <p>Half a day of prep becomes <strong>a pre-filled brief waiting in Notion</strong>. KAM walks into the meeting having already digested six months of context.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     04 RENEWAL RADAR
-============================================================ -->
+<!-- ============ 04 RENEWAL RADAR ============ -->
 <section class="wf" id="renewal">
   <p class="wf-kicker">// 04 – renewal radar</p>
   <h2 class="wf-title">Renewals surfaced <span class="italic">six months early.</span></h2>
   <p class="wf-tagline">Surprises at renewal mean someone wasn't paying attention. This loop watches the contract calendar so the KAM doesn't have to.</p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span>
-    <span class="t-violet">Daily cron</span>
-    <span>HubSpot</span>
-    <span class="t-gold">Claude</span>
-    <span>Calendar</span>
-    <span class="t-lime">Slack</span>
+    <span class="t-ink">n8n</span><span class="t-violet">Daily cron</span><span>HubSpot</span><span class="t-gold">Claude</span><span>Calendar</span><span class="t-lime">Slack</span>
   </div>
-  <p class="scroll-hint">→ scroll horizontally to see the full flow</p>
 
   <div class="canvas-wrap">
     <div class="canvas">
-      <svg viewBox="0 0 1180 260" preserveAspectRatio="none">
-        <defs>
-          <marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/>
-          </marker>
-        </defs>
-        <line x1="190" y1="70" x2="220" y2="70" marker-end="url(#ah4)"/>
-        <line x1="400" y1="70" x2="430" y2="70" marker-end="url(#ah4)"/>
-        <line x1="610" y1="70" x2="640" y2="70" marker-end="url(#ah4)"/>
-        <!-- branch out at AI score -->
-        <path d="M 820 70 C 850 70, 880 70, 900 35" marker-end="url(#ah4)"/>
-        <path d="M 820 70 C 850 70, 880 70, 900 105" marker-end="url(#ah4)"/>
-        <line x1="1060" y1="35" x2="1075" y2="35" marker-end="url(#ah4)"/>
-        <line x1="1060" y1="105" x2="1075" y2="105" marker-end="url(#ah4)"/>
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker><marker id="ah-dv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/></marker></defs>
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-d)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-d)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-d)"/>
+        <!-- branch to at-risk alert (down) -->
+        <path d="M 435 84 C 435 110, 350 110, 255 150" class="arr-dash" marker-end="url(#ah-dv)"/>
       </svg>
 
-      <div class="node trigger" style="left:10px; top:35px;">
+      <div class="node trigger" style="left:0; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">Daily 06:00 scan</div><span class="node-tool">cron</span></div>
-        <p class="node-sub">T-180 · T-120 · T-60 contracts</p>
+        <p class="node-sub">T-180 · T-120 · T-60</p>
       </div>
-      <div class="node" style="left:220px; top:35px;">
-        <div class="node-head"><div class="node-name">Engagement pull</div><span class="node-tool">hubspot</span></div>
+      <div class="node" style="left:180px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Pull engagement</div><span class="node-tool">hubspot</span></div>
         <p class="node-sub">Activity · tickets · NPS</p>
       </div>
-      <div class="node ai" style="left:430px; top:35px;">
+      <div class="node ai" style="left:360px; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">AI risk-score</div><span class="node-tool">claude</span></div>
         <p class="node-sub">At-risk · on-track · expand</p>
       </div>
-      <div class="node" style="left:640px; top:35px;">
-        <div class="node-head"><div class="node-name">Decision splitter</div><span class="node-tool">n8n</span></div>
-        <p class="node-sub">Route by risk class</p>
+      <div class="node output" style="left:540px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Renewal motion</div><span class="node-tool">hubspot · cal</span></div>
+        <p class="node-sub">Deal opened, draft ready</p>
       </div>
-      <!-- two outputs -->
-      <div class="node" style="left:900px; top:5px;">
-        <div class="node-head"><div class="node-name">At-risk → Slack alert</div><span class="node-tool">slack</span></div>
+      <div class="node" data-branch="true" style="left:180px; top:150px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">At-risk alert</div><span class="node-tool">slack</span></div>
         <p class="node-sub">+ recovery action</p>
       </div>
-      <div class="node" style="left:900px; top:75px;">
-        <div class="node-head"><div class="node-name">On-track → motion queued</div><span class="node-tool">hubspot</span></div>
-        <p class="node-sub">+ calendar event</p>
-      </div>
-      <div class="node output" style="left:1075px; top:5px; width:95px;">
-        <div class="node-head"><div class="node-name">Recovery</div><span class="node-tool">→</span></div>
-        <p class="node-sub">Save it</p>
-      </div>
-      <div class="node output" style="left:1075px; top:75px; width:95px;">
-        <div class="node-head"><div class="node-name">Renewal</div><span class="node-tool">→</span></div>
-        <p class="node-sub">Ship it</p>
-      </div>
+      <span class="canvas-label" style="left:350px; top:118px;">if at-risk</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>Turns "we lost X at renewal" into <strong>"we saw X drifting in Q-2 and pulled it back."</strong> The renewal calendar runs the rep, instead of the other way around.</p>
+    <p>Turns "we lost X at renewal" into <strong>"we saw X drifting in Q-2 and pulled it back."</strong></p>
   </div>
 </section>
 
-<!-- ============================================================
-     05 CRISIS ROUTING
-============================================================ -->
+<!-- ============ 05 CRISIS ============ -->
 <section class="wf" id="crisis">
   <p class="wf-kicker">// 05 – crisis escalation routing</p>
   <h2 class="wf-title">Bad news caught <span class="italic">before it festers.</span></h2>
-  <p class="wf-tagline">Negative-sentiment e-mail lands. Within minutes it's classified, routed to the right team, and a draft acknowledgement is ready for the KAM to send.</p>
+  <p class="wf-tagline">Negative-sentiment e-mail lands. Within minutes it's classified, routed to the right team, and a draft acknowledgement is ready for the KAM.</p>
   <div class="wf-stack">
-    <span class="t-ink">n8n</span>
-    <span class="t-violet">Inbox watcher</span>
-    <span class="t-gold">Claude</span>
-    <span>Slack</span>
-    <span>HubSpot</span>
-    <span class="t-lime">KAM-approved reply</span>
+    <span class="t-ink">n8n</span><span class="t-violet">Inbox watcher</span><span class="t-gold">Claude</span><span>Slack</span><span>HubSpot</span><span class="t-lime">KAM reply</span>
   </div>
-  <p class="scroll-hint">→ scroll horizontally to see the full flow</p>
 
   <div class="canvas-wrap">
     <div class="canvas">
-      <svg viewBox="0 0 1180 260" preserveAspectRatio="none">
-        <defs>
-          <marker id="ah5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/>
-          </marker>
-        </defs>
-        <line x1="190" y1="70" x2="220" y2="70" marker-end="url(#ah5)"/>
-        <line x1="400" y1="70" x2="430" y2="70" marker-end="url(#ah5)"/>
-        <!-- branch from triage at (610,110): up to Slack route + down to Claude draft -->
-        <path d="M 610 70 C 640 70, 660 35, 680 35" marker-end="url(#ah5)"/>
-        <path d="M 610 70 C 640 70, 660 105, 680 105" marker-end="url(#ah5)"/>
-        <!-- merge into KAM hands at (900, 70) from both Slack (top) and Claude (bottom) -->
-        <path d="M 860 35 C 880 35, 880 70, 900 70" marker-end="url(#ah5)"/>
-        <path d="M 860 105 C 880 105, 880 70, 900 70" marker-end="url(#ah5)"/>
-        <line x1="1080" y1="70" x2="1110" y2="70" marker-end="url(#ah5)"/>
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker><marker id="ah-ev" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/></marker></defs>
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-e)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-e)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-e)"/>
+        <!-- branch to Slack route (down) -->
+        <path d="M 255 84 C 255 110, 180 110, 75 150" class="arr-dash" marker-end="url(#ah-ev)"/>
       </svg>
 
-      <div class="node trigger" style="left:10px; top:35px;">
-        <div class="node-head"><div class="node-name">Negative e-mail</div><span class="node-tool">trigger</span></div>
-        <p class="node-sub">Inbox watcher · sentiment flag</p>
+      <div class="node trigger" style="left:0; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Negative e-mail</div><span class="node-tool">watcher</span></div>
+        <p class="node-sub">Sentiment flagged</p>
       </div>
-      <div class="node" style="left:220px; top:35px;">
-        <div class="node-head"><div class="node-name">Inbox parse</div><span class="node-tool">n8n</span></div>
-        <p class="node-sub">Customer · thread · context</p>
-      </div>
-      <div class="node ai" style="left:430px; top:35px;">
+      <div class="node ai" style="left:180px; top:20px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">AI triage</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">Ops · billing · product · SLA</p>
+        <p class="node-sub">Ops / billing / product</p>
       </div>
-      <!-- two branches: Slack route (top) + Claude draft (bottom) -->
-      <div class="node" style="left:680px; top:5px;">
+      <div class="node ai" style="left:360px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">Draft acknowledge</div><span class="node-tool">claude</span></div>
+        <p class="node-sub">Playbook-compliant</p>
+      </div>
+      <div class="node output" style="left:540px; top:20px; width:150px; height:64px;">
+        <div class="node-head"><div class="node-name">KAM reply &lt; 1h</div><span class="node-tool">human</span></div>
+        <p class="node-sub">One click · sent</p>
+      </div>
+      <div class="node" data-branch="true" style="left:0; top:150px; width:150px; height:64px;">
         <div class="node-head"><div class="node-name">Route to team</div><span class="node-tool">slack</span></div>
-        <p class="node-sub">+ KAM tagged</p>
+        <p class="node-sub">Ops / billing channel</p>
       </div>
-      <div class="node ai" style="left:680px; top:75px;">
-        <div class="node-head"><div class="node-name">Ack draft</div><span class="node-tool">claude</span></div>
-        <p class="node-sub">24h-playbook compliant</p>
-      </div>
-      <!-- merge -->
-      <div class="node" style="left:900px; top:35px;">
-        <div class="node-head"><div class="node-name">KAM reviews + ships</div><span class="node-tool">human</span></div>
-        <p class="node-sub">One click · reply goes out</p>
-      </div>
-      <div class="node output" style="left:1110px; top:35px; width:65px;">
-        <div class="node-head"><div class="node-name">&lt; 1h</div><span class="node-tool">✦</span></div>
-        <p class="node-sub">customer hears back</p>
-      </div>
+      <span class="canvas-label" style="left:165px; top:118px;">parallel route</span>
     </div>
   </div>
 
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
-    <p>The Sales OS §07 crisis playbook, automated. <strong>"Be early on bad news" stops being a rule and starts being the default behaviour</strong> of the inbox.</p>
+    <p>The Sales OS §07 crisis playbook, automated. <strong>"Be early on bad news" stops being a rule and starts being the default</strong> behaviour of the inbox.</p>
   </div>
 </section>
 
@@ -733,7 +564,7 @@
   <p class="wf-kicker">// the point</p>
   <h2 class="wf-title">Boring on the surface, <span class="italic">obsessive underneath.</span></h2>
   <p class="wf-tagline" style="margin-left: auto; margin-right: auto;">
-    None of this is theatre. Each loop replaces something a sales rep used to do badly because they were tired – cold prospecting at 5pm, prep work skipped before a review, a sentiment-flag e-mail that sat in the inbox till Monday. Boring problems, real automations, measurable outcomes.
+    None of this is theatre. Each loop replaces something a sales rep used to do badly because they were tired – cold prospecting at 5pm, prep work skipped before a review, an angry e-mail that sat in the inbox till Monday.
   </p>
   <p style="margin-top: 1.4rem;">
     <a href="sales-os.html" class="footer-cta" style="display:inline-flex;">Read the full Sales OS playbook →</a>
