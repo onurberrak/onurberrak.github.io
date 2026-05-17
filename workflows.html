@@ -305,6 +305,7 @@
       <li><a href="#review"><span class="toc-num">03</span>Half-yearly review prep</a></li>
       <li><a href="#renewal"><span class="toc-num">04</span>Renewal radar</a></li>
       <li><a href="#crisis"><span class="toc-num">05</span>Crisis escalation routing</a></li>
+      <li><a href="#jobhunt"><span class="toc-num">06</span>Job hunt OS <em style="color:var(--violet)">(personal)</em></a></li>
     </ul>
   </div>
 </section>
@@ -564,6 +565,58 @@
   <div class="wf-outcome">
     <p class="wf-outcome-label">// outcome</p>
     <p>The Sales OS §07 crisis playbook, automated. <strong>"Be early on bad news" stops being a rule and starts being the default</strong> behaviour of the inbox.</p>
+  </div>
+</section>
+
+<!-- ============ 06 JOB HUNT OS ============ -->
+<section class="wf" id="jobhunt">
+  <p class="wf-kicker">// 06 – job hunt OS · personal</p>
+  <h2 class="wf-title">I built one for <span class="italic">my own search, too.</span></h2>
+  <p class="wf-tagline">
+    The dogfood proof. Same shape as the sales workflows above – but pointed at my own job hunt. AI does the research, drafts the outreach, queues it for me to review. I keep the human-in-the-loop on every send (LinkedIn ToS-friendly and recruiter-respecting).
+  </p>
+  <div class="wf-stack">
+    <span class="t-ink">n8n</span><span class="t-violet">Claude · web search</span><span>Perplexity</span><span>Apollo.io</span><span class="t-gold">Claude · drafting</span><span>Notion</span><span class="t-lime">Slack queue</span>
+  </div>
+
+  <div class="canvas-wrap">
+    <div class="canvas">
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <defs><marker id="ah-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0E0D14"/></marker><marker id="ah-fv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4F32D8"/></marker></defs>
+        <line x1="150" y1="52" x2="178" y2="52" marker-end="url(#ah-f)"/>
+        <line x1="330" y1="52" x2="358" y2="52" marker-end="url(#ah-f)"/>
+        <line x1="510" y1="52" x2="538" y2="52" marker-end="url(#ah-f)"/>
+        <!-- branch: from AI draft (x=435) to manual "high stakes" pile -->
+        <path d="M 435 84 C 435 110, 350 110, 255 150" class="arr-dash" marker-end="url(#ah-fv)"/>
+      </svg>
+
+      <div class="node trigger" style="left:0; top:20px; width:150px;">
+        <div class="node-head"><div class="node-name">Daily 08:00 scan</div><span class="node-tool">cron</span></div>
+        <p class="node-sub">Criteria · regions · titles</p>
+      </div>
+      <div class="node ai" style="left:180px; top:20px; width:150px;">
+        <div class="node-head"><div class="node-name">Match jobs to ICP</div><span class="node-tool">claude · web</span></div>
+        <p class="node-sub">DACH · IE · UK · sales/KAM</p>
+      </div>
+      <div class="node" style="left:360px; top:20px; width:150px;">
+        <div class="node-head"><div class="node-name">Find decision-maker</div><span class="node-tool">apollo</span></div>
+        <p class="node-sub">Hiring manager · TA · founder</p>
+      </div>
+      <div class="node output" style="left:540px; top:20px; width:150px;">
+        <div class="node-head"><div class="node-name">Review queue</div><span class="node-tool">slack</span></div>
+        <p class="node-sub">I approve · one click sent</p>
+      </div>
+      <div class="node ai" data-branch="true" style="left:180px; top:150px; width:150px;">
+        <div class="node-head"><div class="node-name">Personalised draft</div><span class="node-tool">claude</span></div>
+        <p class="node-sub">Cover letter + LinkedIn note</p>
+      </div>
+      <span class="canvas-label" style="left:355px; top:118px;">draft per role</span>
+    </div>
+  </div>
+
+  <div class="wf-outcome">
+    <p class="wf-outcome-label">// outcome</p>
+    <p>Same pattern as the sales workflows – AI runs the research and drafting, <strong>I stay the human on every send</strong>. No bots in your inbox, no auto-applies from a stranger; just a faster, more thoughtful job hunt. LinkedIn-ToS-safe by design – nothing is sent without me reading it first.</p>
   </div>
 </section>
 
