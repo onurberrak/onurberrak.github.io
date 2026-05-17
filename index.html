@@ -1304,10 +1304,15 @@
     padding: 8px 14px 9px;
     border-radius: 999px;
     cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(124, 58, 237, 0.25);
+    user-select: none;
     transition: transform .2s ease, background .2s, color .2s, box-shadow .2s;
     font-weight: 500;
     text-transform: lowercase;
   }
+  .chip-q:active { transform: translateY(0) scale(0.97); }
   .chip-q:hover:not(:disabled) {
     background: var(--lime);
     transform: translateY(-2px);
@@ -4579,8 +4584,8 @@
     track.setAttribute('tabindex', '0');
   })();
 
-  // About chat — interactive Q&A in ece's voice
-  (function () {
+  // About chat — interactive Q&A
+  function __initAboutChat() {
     var chatBody = document.getElementById('chatBody');
     var chips = document.querySelectorAll('.chip-q');
     if (!chatBody || !chips.length) return;
@@ -4838,7 +4843,13 @@
       chatBody.scrollTop = chatBody.scrollHeight;
       return wrap;
     }
-  })();
+  }
+  // Run chat init on DOM ready (defensive: works even if script is parsed before chat DOM)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', __initAboutChat);
+  } else {
+    __initAboutChat();
+  }
 
   // Contact form — delivered to ece@nautilida.ai via FormSubmit.co.
   // First-ever submission triggers a one-time activation email to that address;
