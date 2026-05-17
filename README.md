@@ -1,6 +1,6 @@
 # onurberrak.github.io
 
-Personal portfolio site for Onur Berrak — Lead Key Account Manager, Berlin.
+Personal portfolio site for Onur Berrak – Lead Key Account Manager, Berlin.
 
 ## Stack
 Plain HTML + CSS + a single inline `<script>`. No build step.
